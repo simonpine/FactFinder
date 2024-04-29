@@ -1,0 +1,131 @@
+.navbar{
+    position: relative;
+    display: flex;
+    width: 100%;
+    // margin-top: 10px;
+    top: 30px;
+    justify-content: space-between;
+    align-items: center
+}
+.NavTitle{
+    font-size: 3rem;
+    font-weight: 600;
+    opacity: 0.8;
+}
+.FinderBorder{
+    opacity: 100%;
+    margin-left: 10px;
+    border: 0.6rem solid map-get($map:$colors, $key: 'specialDetail');
+    padding: 0.01rem 1rem;
+    border-radius: 10px;
+}
+.AppTitleUni{
+    display: flex;
+    align-items: center
+}
+.MiniDescrip{
+    margin-left: 6px;
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+.GitHubButton{
+    align-items: center;
+    display: flex;
+    padding: 7px 7px;
+    color: map-get($map:$colors, $key: 'mainWhite');
+    text-decoration: none;
+    background-color: map-get($map:$colors, $key: 'mainDark');
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    & img{
+        margin-right: 10px;
+        width: 20px;
+    }
+}
+.BackButtonToClose{
+    top: 0;
+    left: 0;
+    // transform: translate(-100%, 0%);
+    z-index: 1;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+}
+.ButtonIcon{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    & img{
+        width: 20px;
+    }
+}
+.BurgerMenu{
+    border: 2px solid map-get($map:$colors, $key: 'mainDark');
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.CloseButton{
+    & img{
+        width: 40px;
+    }
+}
+
+.SideBar{
+    z-index: 2;
+    background-color: map-get($map:$colors, $key: 'mainDark');
+    position: fixed;
+    height: 100%;
+    padding: 50px;
+    right: 0%;
+    transition: 0.6s ease;
+    width: 200px;
+}
+.SideBarHide{
+    transition: 0.6s ease-in;
+    right: -100%;
+}
+.NavMoveItem{
+    text-decoration: none;
+    color: map-get($map:$colors, $key: 'mainWhite');
+    font-size: 1.4rem;
+    border-radius: 7px;
+    padding: 7px 15px 7px 15px;
+    font-weight: 500;
+
+}
+.ListNavItem{
+    // margin: 25px 0px;
+    width:fit-content;
+}
+.ListNavCont{
+    margin-top: 70px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.NavOptionSelected{
+    border: none;
+    background-color: map-get($map:$colors, $key: 'mainWhite');
+    color: map-get($map:$colors, $key: 'mainDark');
+    &:hover{
+        border: none;
+    }
+}
+.borderDetail{
+    padding: 5px 0px;
+    border: 3px solid map-get($map:$colors, $key: 'specialDetail');
+    width: 0.1px;
+    border-radius: 7px;
+    transition: 0.5s ease;
+    &:hover{
+        border: 3px solid map-get($map:$colors, $key: 'specialDetail2');
+        width: 100%;
+    }
+}
