@@ -1,0 +1,83 @@
+.PercentageItem{
+    width: 65px;
+    height: 65px;
+    border: 0.5rem solid map-get($map:$colors, $key: 'mainDark');
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: map-get($map:$colors, $key: 'mainWhite');
+    & img{
+        width: 50%;
+    }
+}
+.img1{
+    background-image:linear-gradient(map-get($map:$colors, $key: 'secondDark'),map-get($map:$colors, $key: 'secondDark')),  url("../img/foto1.jpg");
+    background-size:cover;
+    // backdrop-filter:  blur(20px);
+}
+.img2{
+    background-image:linear-gradient(map-get($map:$colors, $key: 'secondDark'),map-get($map:$colors, $key: 'secondDark')),  url("../img/foto2.png");    background-size:cover;
+}
+.MagicalBorder{
+    animation-name: colorLoop2;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+}
+.squarsCont{
+    display: flex;
+    justify-content: space-between
+}
+.SquarsPlusText{
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    & p{
+        border: 0.5rem solid map-get($map:$colors, $key: 'mainDark');
+        border-radius: 10px;
+        padding: 20px;
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+}
+.MainPhoto{
+    // background-color: azure;
+    max-width:  45%;
+    // height:100%;
+    object-fit: cover;
+    border: 0.5rem solid map-get($map:$colors, $key: 'mainDark');
+    border-radius: 10px;
+}
+.HorizontalContLand{
+    display: flex;
+    justify-content: space-between;
+}
+.CommentsCont{
+    background-color: map-get($map:$colors, $key: 'mainDark');
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+.CartComent{
+    background-color: map-get($map:$colors, $key: 'mainWhite');
+    padding: 15px;
+    max-width: 225px;
+    border-radius: 5px;
+    & div{
+        display: flex;
+        align-items: center;
+        & h4{
+            margin-left: 20px;
+            font-size: 1.4rem;
+        }
+        & img{
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+        }
+    }
+}
+.commentP{
+    margin-top: 10px;
+}

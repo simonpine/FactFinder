@@ -1,25 +1,59 @@
 @keyframes colorLoop {
     0% {
-        border: 0.6rem solid map-get($map:$colors, $key: 'specialDetail');
+        border: 0.5rem solid map-get($map:$colors, $key: 'specialDetail');
     }
   
     50% {
-        border: 0.6rem solid map-get($map:$colors, $key: 'specialDetail2');
+        border: 0.5rem solid map-get($map:$colors, $key: 'specialDetail2');
     }
   
     100% {
-        border: 0.6rem solid map-get($map:$colors, $key: 'specialDetail');
+        border: 0.5rem solid map-get($map:$colors, $key: 'specialDetail');
     }
   }
-
+  @keyframes colorLoop2 {
+    0% {
+        border: 0.5rem solid map-get($map:$colors, $key: 'specialDetail2');
+    }
+  
+    50% {
+        border: 0.5rem solid map-get($map:$colors, $key: 'specialDetail');
+    }
+  
+    100% {
+        border: 0.5rem solid map-get($map:$colors, $key: 'specialDetail2');
+    }
+  }
+  @keyframes colorLoop3 {
+    0% {
+        border: 0.3rem solid map-get($map:$colors, $key: 'specialDetail2');
+    }
+  
+    50% {
+        border: 0.3rem solid map-get($map:$colors, $key: 'specialDetail');
+    }
+  
+    100% {
+        border: 0.3rem solid map-get($map:$colors, $key: 'specialDetail2');
+    }
+  }
 .navbar{
-    position: relative;
+    // position: relative;
     display: flex;
-    width: 100%;
+    // width: 100%;
+    max-width: 900px;
+    margin: auto;
+    // position: fixed;
+    // padding-top: 40px;
     // margin-top: 10px;
-    top: 30px;
+    // top: 30px;
+    // top: 40px;
+    // left: 50%;
+    margin: 40px auto;
+    // transform: translateX(-50%);
     justify-content: space-between;
-    align-items: center
+    align-items: center;
+    padding:  0px 2rem;
 }
 .NavTitle{
     font-size: 3rem;
@@ -142,7 +176,7 @@
 .borderDetail{
     padding: 5px 0px;
     border: 3px solid map-get($map:$colors, $key: 'specialDetail');
-    width: 0.1px;
+    width: 0%;
     border-radius: 7px;
     transition: 0.5s ease;
     &:hover{

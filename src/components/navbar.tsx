@@ -30,7 +30,7 @@ function Navbar({ selected }: {
                         </div>
                     </li>
                     <li className="ListNavItem">
-                        <div className={`${selected === 1 && 'borderDetail'}`}>
+                        <div className={`${selected !== 3 && 'borderDetail'}`}>
                             <Link className={`NavMoveItem ${selected === 3 && 'NavOptionSelected'}`} to={{ pathname: "/saved" }}>Saved</Link>
                         </div>
                     </li>
@@ -59,7 +59,7 @@ function Navbar({ selected }: {
                 <div className="AppTitleUni">
                     <a className="GitHubButton" target="blank" href="https://github.com/simonpine/FactFinder">
                         <img alt="Github icon button" src={git} />
-                        Source code
+                        Model code
                     </a>
                     <button className="ButtonIcon BurgerMenu" onClick={() => setIsOpen(!isOpen)} >
                         <img alt="Button to display side menu" src={burger} />

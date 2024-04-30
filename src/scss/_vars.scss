@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 $colors:(
     'mainDark': #262626,
-    'secondDark': #262626bd,
-    'dots': #2626268a,
+    'secondDark': #2626269f,
+    'dots': #2626264d,
     'specialDetail': #FF6666,
+    'specialDetailBar': #ff6666a9,
     'specialDetail2': #ED81FF,
     'mainWhite': #ffff,
     'selected': #FF6666,
@@ -17,17 +18,21 @@ $colors:(
     font-family: "Montserrat", sans-serif;
 };
 html{
-    background-image: radial-gradient(map-get($map:$colors, $key: 'dots') 2px, transparent 0);
+    background-image: radial-gradient(map-get($map:$colors, $key: 'dots') 1.5px, transparent 0);
     background-size: 35px 35px;
     font-size: 80%;
 }
-#root{
-    width: 100vw;
-    height: 100vh;
-}
 .FullContainer{
     // background-color: #262626;
-    height: 100%;
-    max-width: 840px;
+    position: relative;
+    max-width: 900px;
     margin: auto;
+    padding: 0px 2rem;
 }
+*::-webkit-scrollbar{
+    width: 5px;
+  }
+*::-webkit-scrollbar-thumb {
+    background-color: map-get($map:$colors, $key: 'specialDetailBar');
+    border-radius: 5px;
+  }
