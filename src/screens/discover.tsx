@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import SearchImg from '../img/search.png'
 import NewCard from "../components/newCard";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
-import { fetchHTML } from "../functions";
+import { fetchAndExtractNewsContent } from "../functions";
 // import useNearScr
 
 function Discover() {
@@ -34,14 +34,7 @@ function Discover() {
         const result = await CallNewsHead(category, contry, q, page + 1)
         await setPage(page + 1)
         if (result.status !== 'error') {
-            const AllNews = await result.articles
-            await AllNews.map(async (nw:any) => {
-                // console.log(nw)
-                const a = await fetchHTML(nw.url).catch(res => nw.content)
-                nw.content = await a
-                return await nw
-            })
-            await setNewsList([...newsList, ...AllNews])
+            await setNewsList([...newsList, ...result.articles])
         }
         await setLoading(false)
     }
@@ -52,12 +45,12 @@ function Discover() {
             const result = await CallNewsHead('general', '', '', 1)
             if (result.status !== 'error') {
                 const AllNews = await result.articles
-                await AllNews.map(async (nw:any) => {
-                    // console.log(nw)
-                    const a = await fetchHTML(nw.url).catch(res => nw.content)
-                    nw.content = await a
-                    return await nw
-                })
+                // await AllNews.map(async (nw:any) => {
+                //     // console.log(nw)
+                //     const a = await fetchAndExtractNewsContent(nw.url).catch(res => nw.content)
+                //     nw.content = await a
+                //     return await nw
+                // })
                         
                 await console.log(AllNews)
                 await setNumberArticles(result.totalResults)
