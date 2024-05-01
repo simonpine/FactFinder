@@ -2,7 +2,6 @@ import errorImg from '../img/image-slash.png'
 import mark from '../img/bookmark.png'
 import mark2 from '../img/bookmark-(2).png'
 import { useState, useEffect } from 'react';
-import { fetchHTML } from '../functions';
 function NewCard({ newDetails }: {
     newDetails: any;
 }) {
@@ -23,7 +22,7 @@ function NewCard({ newDetails }: {
                     </div>
                 </div>
             </div>
-            <h5 className='NewDateCard'>{newDetails.publish_date.slice(0, 10)}</h5>
+            {/* <h5 className='NewDateCard'>{newDetails.publish_date.slice(0, 10)}</h5> */}
             <h4 className='NewTitleCard'>{newDetails.title}</h4>
             <div className='ButtonContCard'>
                 <button onClick={() => { console.log(newDetails.text) }} className='GitHubButton ColorChangeButton'>

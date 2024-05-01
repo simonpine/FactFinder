@@ -17,7 +17,7 @@
     // backdrop-filter:  blur(20px);
 }
 .img2{
-    background-image:linear-gradient(map-get($map:$colors, $key: 'secondDark'),map-get($map:$colors, $key: 'secondDark')),  url("../img/foto2.png");    background-size:cover;
+    background-image:linear-gradient(map-get($map:$colors, $key: 'secondDark'),map-get($map:$colors, $key: 'secondDark')),  url("../img/foto2.jpg");    background-size:cover;
 }
 .MagicalBorder{
     animation-name: colorLoop2;

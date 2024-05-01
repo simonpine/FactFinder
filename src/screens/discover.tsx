@@ -43,8 +43,8 @@ function Discover() {
             await setNewsList([])
             const result = await CallNewsHead('general', '', '', 1)
             if (result.status !== 'error') {
-                const AllNews = await result.news
-                await setNumberArticles(result.available)
+                const AllNews = await result.results
+                await setNumberArticles(result.totalResults)
                 await setNewsList(AllNews);
             }
         }
