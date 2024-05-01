@@ -3,6 +3,7 @@ import Navbar from './components/navbar';
 import Banner from './img/title.jpg'
 import Logo from './img/logo.svg'
 import Comment from './components/comment';
+import LogoSimon from './img/LogoSImon.png'
 function App() {
   return (
     <>
@@ -12,10 +13,12 @@ function App() {
           <img className='MainPhoto' alt='Represents the news that this page is going to judge' src={Banner} />
           <div className='SquarsPlusText'>
             <div className='squarsCont'>
-              <div className='PercentageItem'>
-              </div>
+
               <h2 className='PercentageItem img1'>50%</h2>
               <h2 className='PercentageItem img2'>90%</h2>
+              <div className='PercentageItem Fil'>
+                {/* <img alt='FactFinder logo' src={LogoSimon} /> */}
+              </div>
               <div className='PercentageItem MagicalBorder'>
                 <img alt='FactFinder logo' src={Logo} />
               </div>
@@ -25,14 +28,14 @@ function App() {
           </div>
         </div>
         <div className='HorizontalContLand CommentsCont'>
-          {/* <div className='CartComent'>
+          <div className='CartComent'>
             <div>
               <img alt='User icon' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv5XRVQ7xxHNWBa1Hj590AOOFQpP2FxYemRENy37Igew&s'></img>
               <h4>Simon Pineda</h4>
             </div>
             <p className='commentP'>dignissim rhoncus fames feugiat dis. Primis tempor vestibulum auctor non class, nunc malesuada sem arcu semper, quam nullam.</p>
-          </div> */}
-    
+          </div>
+
         </div>
       </div>
     </>

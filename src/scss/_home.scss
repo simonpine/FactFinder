@@ -1,83 +1,130 @@
-.PercentageItem{
-    width: 65px;
-    height: 65px;
-    border: 0.5rem solid map-get($map:$colors, $key: 'mainDark');
+.PercentageItem {
+    width: 80px;
+    height: 80px;
+    border: 0.5rem solid map-get($map: $colors, $key: 'mainDark');
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: map-get($map:$colors, $key: 'mainWhite');
-    & img{
+    color: map-get($map: $colors, $key: 'mainWhite');
+
+    & img {
         width: 50%;
     }
 }
-.img1{
-    background-image:linear-gradient(map-get($map:$colors, $key: 'secondDark'),map-get($map:$colors, $key: 'secondDark')),  url("../img/foto1.jpg");
-    background-size:cover;
+
+.img1 {
+    background-image: linear-gradient(map-get($map: $colors, $key: 'secondDark'), map-get($map: $colors, $key: 'secondDark')), url("../img/foto1.jpg");
+    background-size: cover;
     // backdrop-filter:  blur(20px);
 }
-.img2{
-    background-image:linear-gradient(map-get($map:$colors, $key: 'secondDark'),map-get($map:$colors, $key: 'secondDark')),  url("../img/foto2.jpg");    background-size:cover;
+
+.img2 {
+    background-image: linear-gradient(map-get($map: $colors, $key: 'secondDark'), map-get($map: $colors, $key: 'secondDark')), url("../img/foto2.jpg");
+    background-size: cover;
 }
-.MagicalBorder{
+
+.MagicalBorder {
     animation-name: colorLoop2;
     animation-duration: 15s;
     animation-iteration-count: infinite;
 }
-.squarsCont{
+
+.squarsCont {
     display: flex;
     justify-content: space-between
 }
-.SquarsPlusText{
+
+.SquarsPlusText {
     max-width: 50%;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    & p{
-        border: 0.5rem solid map-get($map:$colors, $key: 'mainDark');
+
+    & p {
+        border: 0.5rem solid map-get($map: $colors, $key: 'mainDark');
         border-radius: 10px;
         padding: 20px;
         font-size: 1.2rem;
         font-weight: 500;
     }
 }
-.MainPhoto{
+
+.MainPhoto {
     // background-color: azure;
-    max-width:  45%;
+    max-width: 45%;
     // height:100%;
     object-fit: cover;
-    border: 0.5rem solid map-get($map:$colors, $key: 'mainDark');
+    border: 0.5rem solid map-get($map: $colors, $key: 'mainDark');
     border-radius: 10px;
 }
-.HorizontalContLand{
+
+.HorizontalContLand {
     display: flex;
     justify-content: space-between;
 }
-.CommentsCont{
-    background-color: map-get($map:$colors, $key: 'mainDark');
+
+.CommentsCont {
+    background-color: map-get($map: $colors, $key: 'mainDark');
     padding: 10px;
     border-radius: 10px;
     margin-top: 30px;
 }
-.CartComent{
-    background-color: map-get($map:$colors, $key: 'mainWhite');
+
+.CartComent {
+    background-color: map-get($map: $colors, $key: 'mainWhite');
     padding: 15px;
     max-width: 225px;
     border-radius: 5px;
-    & div{
+
+    & div {
         display: flex;
         align-items: center;
-        & h4{
+
+        & h4 {
             margin-left: 20px;
             font-size: 1.4rem;
         }
-        & img{
+
+        & img {
             width: 40px;
             height: 40px;
             border-radius: 100%;
         }
     }
 }
-.commentP{
+
+.commentP {
     margin-top: 10px;
+}
+
+.Fil {
+    background-color: map-get($map: $colors, $key: 'mainDark');
+
+    & img {
+        width: 45px;
+    }
+}
+
+.errorMsg {
+    border: .5rem solid  map-get($map: $colors, $key: 'mainDark');
+    transition: 0.5s;
+    &:hover{
+        @extend .MagicalBorder;
+        cursor: pointer;
+    }
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    & img {
+        height: 40pxs;
+        width: 40px;
+    }
+    & h5{
+        font-size: 1.2rem;
+        font-weight: 800;
+    }
 }
