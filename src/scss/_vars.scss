@@ -25,14 +25,18 @@ html{
 .FullContainer{
     // background-color: #262626;
     position: relative;
-    max-width: 900px;
+    max-width: 1200px;
     margin: auto;
     padding: 0px 2rem;
 }
 *::-webkit-scrollbar{
     width: 5px;
+    background-color:  map-get($map:$colors, $key: 'mainDark');
   }
 *::-webkit-scrollbar-thumb {
     background-color: map-get($map:$colors, $key: 'specialDetailBar');
     border-radius: 5px;
   }
+button:disabled{
+    cursor:default;
+}
