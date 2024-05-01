@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import SearchImg from '../img/search.png'
 import NewCard from "../components/newCard";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
-import { fetchAndExtractNewsContent } from "../functions";
+import { fetchHTML } from "../functions";
 // import useNearScr
 
 function Discover() {
@@ -47,14 +47,15 @@ function Discover() {
                 const AllNews = await result.articles
                 // await AllNews.map(async (nw:any) => {
                 //     // console.log(nw)
-                //     const a = await fetchAndExtractNewsContent(nw.url).catch(res => nw.content)
+                //     const a = await fetchHTML(nw.url).catch((res:any) => nw.content)
                 //     nw.content = await a
                 //     return await nw
                 // })
-                        
+                      
+                
                 await console.log(AllNews)
                 await setNumberArticles(result.totalArticles)
-                // await setNewsList(AllNews);
+                await setNewsList(AllNews);
             }
         }
         FetchData()
@@ -125,11 +126,13 @@ function Discover() {
                         <select onChange={e => setCategory(e.target.value)} >
                             <option value='general'>General</option>
                             {/* <option value='general'>Category</option> */}
+                            <option value='world'>World</option>
+                            <option value='nation'>Nation</option>
                             <option value='business'>Business</option>
                             <option value='entertainment'>Entertainment</option>
+                            <option value='sports'>Sports</option>
                             <option value='health'>Health</option>
                             <option value='science'>Science</option>
-                            <option value='sports'>Sports</option>
                             <option value='technology'>Technology</option>
                         </select>
                         {/* <select onChange={e => setSort(e.target.value)} >
