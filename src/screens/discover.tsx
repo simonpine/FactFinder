@@ -24,7 +24,7 @@ function Discover() {
         await setNewsList([]);
         const result = await CallNewsHead(category, contry, q, 1)
         await console.log(result);
-        await setNumberArticles(result.totalResults)
+        await setNumberArticles(result.totalArticles)
         await setPage(1)
         await setNewsList(result.articles);
     }
@@ -53,8 +53,8 @@ function Discover() {
                 // })
                         
                 await console.log(AllNews)
-                await setNumberArticles(result.totalResults)
-                await setNewsList(AllNews);
+                await setNumberArticles(result.totalArticles)
+                // await setNewsList(AllNews);
             }
         }
         FetchData()

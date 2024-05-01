@@ -24,7 +24,7 @@ export async function CallNewsEvery(category: string, contry: string, q: string,
 }
 
 export async function CallNewsHead(category: string, contry: string, q: string, page: number): Promise<any> {
-  let response: any = await fetch(`https://newsapi.org/v2/top-headlines?language=en&pageSize=8${category !== '' ? `&category=${category}` : ''}${contry !== '' ? `&country=${contry}` : ''}${q !== '' ? `&q=${q}` : ''}&page=${page}&apiKey=6e4f06acb98c47fcbbf69878df0b3e7f`)
+  let response: any = await fetch(`https://gnews.io/api/v4/search?lang=en&max=8${category !== '' ? `&category=${category}` : ''}${contry !== '' ? `&country=${contry}` : ''}${q !== '' ? `&q=${q}` : ''}&page=${page}&apikey=a00993cb0cd907c55d2754c227d49d94`)
   response = response.json()
   return response
 }
