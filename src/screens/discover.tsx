@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import SearchImg from '../img/search.png'
 import NewCard from "../components/newCard";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
-import { fetchHTML } from "../functions";
 // import useNearScr
 
 function Discover() {
@@ -24,9 +23,9 @@ function Discover() {
         await setNewsList([]);
         const result = await CallNewsHead(category, contry, q, 1)
         await console.log(result);
-        await setNumberArticles(result.totalArticles)
+        await setNumberArticles(result.available)
         await setPage(1)
-        await setNewsList(result.articles);
+        await setNewsList(result.news);
     }
     async function AddPage(): Promise<void> {
         await console.log(numberArticles, newsList.length)
@@ -34,7 +33,7 @@ function Discover() {
         const result = await CallNewsHead(category, contry, q, page + 1)
         await setPage(page + 1)
         if (result.status !== 'error') {
-            await setNewsList([...newsList, ...result.articles])
+            await setNewsList([...newsList, ...result.news])
         }
         await setLoading(false)
     }
@@ -44,17 +43,8 @@ function Discover() {
             await setNewsList([])
             const result = await CallNewsHead('general', '', '', 1)
             if (result.status !== 'error') {
-                const AllNews = await result.articles
-                // await AllNews.map(async (nw:any) => {
-                //     // console.log(nw)
-                //     const a = await fetchHTML(nw.url).catch((res:any) => nw.content)
-                //     nw.content = await a
-                //     return await nw
-                // })
-                      
-                
-                await console.log(AllNews)
-                await setNumberArticles(result.totalArticles)
+                const AllNews = await result.news
+                await setNumberArticles(result.available)
                 await setNewsList(AllNews);
             }
         }
