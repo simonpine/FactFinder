@@ -24,7 +24,7 @@ function NewCard({ newDetails }: {
             <h5 className='NewDateCard'>{newDetails.publishedAt.slice(0, 10)}</h5>
             <h4 className='NewTitleCard'>{newDetails.title}</h4>
             <div className='ButtonContCard'>
-                <button className='GitHubButton ColorChangeButton'>
+                <button onClick={()=>{console.log(newDetails.content)}} className='GitHubButton ColorChangeButton'>
                     Read more
                 </button>
                 <button className='MarkButton' onClick={()=> setSelected(!selected)}>

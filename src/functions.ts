@@ -10,22 +10,11 @@ function extractNewsContent(html: string): string {
   return newsContent;
 }
 
-async function fetchHTMLWithProxy(url: string): Promise<string> {
-  const proxyUrl = url;
-  const response = await fetch(proxyUrl);
-  const html = await response.text();
-  return html;
-}
-
-export async function fetchAndExtractNewsContent(url: string): Promise<string> {
-  try {
-    const html = await fetchHTMLWithProxy(url);
-    const newsContent = extractNewsContent(html);
-    return newsContent;
-  } catch (error) {
-    console.error('Error fetching HTML content:', error);
-    return ''; // Return empty string in case of error
-  }
+export async function fetchHTML(url: string): Promise<string> {
+  const response: Response = await fetch(url);
+  const html: string = await response.text();
+  const res: string = await extractNewsContent(html)
+  return res;
 }
 
 export async function CallNewsEvery(category: string, contry: string, q: string, sort: string, page: number): Promise<any> {

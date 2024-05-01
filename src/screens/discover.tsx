@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import SearchImg from '../img/search.png'
 import NewCard from "../components/newCard";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
-import { fetchAndExtractNewsContent } from "../functions";
+import { fetchHTML } from "../functions";
 // import useNearScr
 
 function Discover() {
@@ -34,7 +34,14 @@ function Discover() {
         const result = await CallNewsHead(category, contry, q, page + 1)
         await setPage(page + 1)
         if (result.status !== 'error') {
-            await setNewsList([...newsList, ...result.articles])
+            const AllNews = await result.articles
+            await AllNews.map(async (nw:any) => {
+                // console.log(nw)
+                const a = await fetchHTML(nw.url).catch(res => nw.content)
+                nw.content = await a
+                return await nw
+            })
+            await setNewsList([...newsList, ...AllNews])
         }
         await setLoading(false)
     }
@@ -44,19 +51,18 @@ function Discover() {
             await setNewsList([])
             const result = await CallNewsHead('general', '', '', 1)
             if (result.status !== 'error') {
-                const allNews = result.articles;
-                const promises = allNews.map(async (article: any) => {
-                  const content = await fetchAndExtractNewsContent(article.url);
-                  await console.log("content", content)
-                  return { ...article, content };
-                });
-                
-                // Wait for all promises to resolve
-                const updatedNewsList = await Promise.all(promises);
-                
-                // setNumberArticles(result.totalResults);
-                // setNewsList(updatedNewsList);
-              }
+                const AllNews = await result.articles
+                await AllNews.map(async (nw:any) => {
+                    // console.log(nw)
+                    const a = await fetchHTML(nw.url).catch(res => nw.content)
+                    nw.content = await a
+                    return await nw
+                })
+                        
+                await console.log(AllNews)
+                await setNumberArticles(result.totalResults)
+                await setNewsList(AllNews);
+            }
         }
         FetchData()
     }, [])
