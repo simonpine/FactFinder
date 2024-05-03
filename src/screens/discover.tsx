@@ -319,14 +319,14 @@ function Discover() {
                                     })
                                     :
                                     <div onClick={clearFilters} className=" errorMsg">
-                                        <img  src={error}/>
+                                        <img alt="This show that the news banner doesnt came" src={error}/>
                                         <h5>No news satisfies the filters.</h5>
                                     </div>
 
                                 :
-                                forLoad.map(() => {
+                                forLoad.map((a:number) => {
                                     return (
-                                        <LoadingNew />
+                                        <LoadingNew key={a} />
                                     )
                                 })
 
