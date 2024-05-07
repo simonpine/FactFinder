@@ -5,8 +5,6 @@ import reportWebVitals from './reportWebVitals';
 import {RouterProvider} from "react-router-dom"
 // import {Form, RouterProvider} from "react-router-dom"
 import { router } from './router';
-
-
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 const firebaseConfig = {

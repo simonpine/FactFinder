@@ -5,7 +5,9 @@ import SearchImg from '../img/search.png'
 import NewCard from "../components/newCard";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 import LoadingNew from "../components/loadingCard";
-import error from  '../img/times-hexagon.png';
+import error from '../img/times-hexagon.png';
+import NewBox from "../components/newBox";
+
 const forLoad: Array<number> = [1, 2, 3, 4, 5, 6]
 function Discover() {
     const [page, setPage] = useState(1)
@@ -17,12 +19,15 @@ function Discover() {
     const [prioritydomain, setPrioritydomain] = useState('')
     const [q, setQ] = useState('')
     const [contry, setContry] = useState('')
+
+    const [showNew, setShowNew] = useState({content: ''})
     async function Submit(evt: any) {
         await evt.preventDefault();
         await FetchData()
     }
     async function FetchData(): Promise<void> {
         await setNewsList([]);
+        await setNumberArticles(0)
         await setChargingData(true);
         const result = await CallNewsHead(category, contry, q, prioritydomain, 1)
         if (result.status !== 'error') {
@@ -43,7 +48,7 @@ function Discover() {
         }
         await setLoading(false)
     }
-    async function clearFilters(): Promise<void>{
+    async function clearFilters(): Promise<void> {
         await setCategory("top")
         await setQ("")
         await setContry("")
@@ -68,6 +73,10 @@ function Discover() {
     }, [])
     return (
         <>
+            {showNew.content !== '' &&
+                <NewBox setTheNew={setShowNew} newDetails={showNew}>
+                </NewBox>
+            }
             <Navbar selected={2} />
             <div className="FullContainer">
                 <form onSubmit={Submit} className="SearchCont">
@@ -95,7 +104,7 @@ function Discover() {
                             <option value='bm' >Bermuda</option>
                             <option value='bt' >Bhutan</option>
                             <option value='bo' >Bolivia</option>
-                            <option value='ba' >BosniaAndHerzegovina</option>
+                            <option value='ba' >Bosnia And Herzegovina</option>
                             <option value='bw' >Botswana</option>
                             <option value='br' >Brazil</option>
                             <option value='bn' >Brunei</option>
@@ -107,7 +116,7 @@ function Discover() {
                             <option value='ca' >Canada</option>
                             <option value='cv' >CapeVerde</option>
                             <option value='ky' >CaymanIslands</option>
-                            <option value='cf' >CentralAfricanRepublic</option>
+                            <option value='cf' >Central African Republic</option>
                             <option value='td' >Chad</option>
                             <option value='cl' >Chile</option>
                             <option value='cn' >China</option>
@@ -122,12 +131,12 @@ function Discover() {
                             <option value='dk' >Denmark</option>
                             <option value='dj' >Djibouti</option>
                             <option value='dm' >Dominica</option>
-                            <option value='do' >Dominicanrepublic</option>
+                            <option value='do' >Dominican republic</option>
                             <option value='cd' >DRCongo</option>
                             <option value='ec' >Ecuador</option>
                             <option value='eg' >Egypt</option>
                             <option value='sv' >ElSalvador</option>
-                            <option value='gq' >EquatorialGuinea</option>
+                            <option value='gq' >Equatorial Guinea</option>
                             <option value='er' >Eritrea</option>
                             <option value='ee' >Estonia</option>
                             <option value='sz' >Eswatini</option>
@@ -135,7 +144,7 @@ function Discover() {
                             <option value='fj' >Fiji</option>
                             <option value='fi' >Finland</option>
                             <option value='fr' >France</option>
-                            <option value='pf' >Frenchpolynesia</option>
+                            <option value='pf' >French polynesia</option>
                             <option value='ga' >Gabon</option>
                             <option value='gm' >Gambia</option>
                             <option value='ge' >Georgia</option>
@@ -158,7 +167,7 @@ function Discover() {
                             <option value='ie' >Ireland</option>
                             <option value='il' >Israel</option>
                             <option value='it' >Italy</option>
-                            <option value='ci' >IvoryCoast</option>
+                            <option value='ci' >Ivory Coast</option>
                             <option value='jm' >Jamaica</option>
                             <option value='jp' >Japan</option>
                             <option value='je' >Jersey</option>
@@ -186,7 +195,7 @@ function Discover() {
                             <option value='mv' >Maldives</option>
                             <option value='ml' >Mali</option>
                             <option value='mt' >Malta</option>
-                            <option value='mh' >MarshallIslands</option>
+                            <option value='mh' >Marshall Islands</option>
                             <option value='mr' >Mauritania</option>
                             <option value='mu' >Mauritius</option>
                             <option value='mx' >Mexico</option>
@@ -213,7 +222,7 @@ function Discover() {
                             <option value='pw' >Palau</option>
                             <option value='ps' >Palestine</option>
                             <option value='pa' >Panama</option>
-                            <option value='pg' >PapuaNewGuinea</option>
+                            <option value='pg' >Papua New Guinea</option>
                             <option value='py' >Paraguay</option>
                             <option value='pe' >Peru</option>
                             <option value='ph' >Philippines</option>
@@ -225,7 +234,7 @@ function Discover() {
                             <option value='ru' >Russia</option>
                             <option value='rw' >Rwanda</option>
                             <option value='ws' >Samoa</option>
-                            <option value='sm' >SanMarino</option>
+                            <option value='sm' >San Marino</option>
                             <option value='sa' >Saudiarabia</option>
                             <option value='sn' >Senegal</option>
                             <option value='rs' >Serbia</option>
@@ -234,7 +243,7 @@ function Discover() {
                             <option value='sg' >Singapore</option>
                             <option value='sk' >Slovakia</option>
                             <option value='si' >Slovenia</option>
-                            <option value='sb' >SolomonIslands</option>
+                            <option value='sb' >Solomon Islands</option>
                             <option value='so' >Somalia</option>
                             <option value='za' >Southafrica</option>
                             <option value='kr' >Southkorea</option>
@@ -259,9 +268,9 @@ function Discover() {
                             <option value='tv' >Tuvalu</option>
                             <option value='ug' >Uganda</option>
                             <option value='ua' >Ukraine</option>
-                            <option value='ae' >Unitedarabemirates</option>
+                            <option value='ae' >United arab emirates</option>
                             <option value='gb' >Unitedkingdom</option>
-                            <option value='us' >Unitedstatesofamerica</option>
+                            <option value='us' >United states of america</option>
                             <option value='uy' >Uruguay</option>
                             <option value='uz' >Uzbekistan</option>
                             <option value='vu' >Vanuatu</option>
@@ -313,18 +322,18 @@ function Discover() {
                                 newsList.length > 0 ?
                                     newsList.map((notc: any) => {
                                         return notc.title !== '[Removed]' ? (
-                                            <NewCard newDetails={notc} key={notc.article_id} />
+                                            <NewCard setTheNew={setShowNew} newDetails={notc} key={notc.article_id} />
                                         ) :
                                             (<></>)
                                     })
                                     :
                                     <div onClick={clearFilters} className=" errorMsg">
-                                        <img alt="This show that the news banner doesnt came" src={error}/>
+                                        <img alt="This show that the news banner doesnt came" src={error} />
                                         <h5>No news satisfies the filters.</h5>
                                     </div>
 
                                 :
-                                forLoad.map((a:number) => {
+                                forLoad.map((a: number) => {
                                     return (
                                         <LoadingNew key={a} />
                                     )
