@@ -216,3 +216,34 @@
     display: flex;
     justify-content: space-between
 }
+.FullContSetting{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 5;
+    position: fixed;
+    width: 200px;
+    // height: 200px;
+    border-radius: 15px;
+    background-color: map-get($map:$colors, $key: 'mainDark');
+    padding: 10px;
+    & .GitHubButton{
+        margin: 10px;
+    }
+}
+.UserLogoSettings{
+    width: 30px;
+    margin: 10px;
+    border-radius: 100%;
+}
+.NameAndLogo{
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    & h3{
+        margin-left: 10px;
+        color: map-get($map:$colors, $key: 'mainWhite');
+        font-size: 1.5rem;
+    }
+}

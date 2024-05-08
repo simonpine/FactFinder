@@ -30,7 +30,7 @@ function App() {
         <div className='HorizontalContLand CommentsCont'>
           <div className='CartComent'>
             <div>
-              <img alt='User icon' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv5XRVQ7xxHNWBa1Hj590AOOFQpP2FxYemRENy37Igew&s'></img>
+              <img alt='User icon' src='https://lh3.googleusercontent.com/a/ACg8ocKkcJhQE10oTEvEbDo9fsLixAvQzLtMMboJhNwHIXvgk_sJV-3O=s96-c'></img>
               <h4>Simon Pineda</h4>
             </div>
             <p className='commentP'>dignissim rhoncus fames feugiat dis. Primis tempor vestibulum auctor non class, nunc malesuada sem arcu semper, quam nullam.</p>

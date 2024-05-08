@@ -3,7 +3,7 @@ import { useState } from "react";
 import burger from '../img/menu-burger.png'
 import git from '../img/github-logo.png'
 import Google from '../img/Google.png'
-import Google2 from '../img/Google2.png'
+// import Google2 from '../img/Google2.png'
 import close from '../img/cross-small.png'
 import { auth } from '../fireBaseCom'
 import { useAuthState } from 'react-firebase-hooks/auth'
@@ -14,6 +14,8 @@ import lock from '../img/lock.png'
 // import instragram from '../img/instagram.png'
 // import simonPine from '../img/simonpine.png'
 // import github from '../img/github-sign.png'
+
+// auth.signOut()
 function Navbar({ selected }: {
     selected: number;
 }) {
@@ -21,14 +23,36 @@ function Navbar({ selected }: {
         const provider = new firebase.auth.GoogleAuthProvider()
         auth.signInWithPopup(provider).then((result: string) => {
             console.log("Logged In", result);
-          }).catch((error:string) => {
-            console.log("Caught error Popup closed");
-          });
+        })
     }
     const [user] = useAuthState(auth)
     const [isOpen, setIsOpen] = useState(false);
+    const [settings, setSettings] = useState(false)
     return (
         <>
+            {settings &&
+                <>
+                    <div onClick={() => setSettings(false)} className="ContWithTheQuit">
+                    </div>
+                    <div className="FullContSetting">
+                        <div className="NameAndLogo">
+                            <button onClick={() => setSettings(false)} className="ButtonIcon CloseButton">
+                                <img alt="Close Button" src={close} />
+                            </button>
+                            <img className="UserLogoSettings" src={auth.currentUser.photoURL} />
+                        </div>
+                        <div className="NameAndLogo">
+                            <h3>{auth.currentUser.displayName}</h3>
+                        </div>
+                        <button onClick={() => {
+                            setSettings(false)
+                            auth.signOut()
+                        }} className="GitHubButton ColorChangeButton">
+                            Log out
+                        </button>
+                    </div>
+                </>
+            }
             {isOpen && <div onClick={() => setIsOpen(false)} className="BackButtonToClose"></div>}
             <div className={`SideBar ${!isOpen && "SideBarHide"}`}>
                 <button onClick={() => setIsOpen(false)} className="ButtonIcon CloseButton">
@@ -46,10 +70,17 @@ function Navbar({ selected }: {
                         </div>
                     </li>
                     <li className="ListNavItem">
-                        <div className={`br ${selected !== 3 && 'borderDetail'}`}>
-                            <Link className={`NavMoveItem ${selected === 3 && 'NavOptionSelected'}`} to={{ pathname: "/saved" }}>Saved 
-                            {!user && <img alt='Please log in to acces to this function' src={lock} />}
-                            </Link>
+                        <div className={`br ${selected !== 3 && 'borderDetail'} `}>
+                            {user ?
+                                <Link className={`NavMoveItem ${selected === 3 && 'NavOptionSelected'}`} to={{ pathname: "/saved" }}>Saved
+                                </Link>
+                                :
+                                <div className="NavMoveItem">
+                                    Saved
+                                    {!user && <img alt='Please log in to acces to this function' src={lock} />}
+
+                                </div>
+                            }
                         </div>
                     </li>
                 </ul>
@@ -85,9 +116,10 @@ function Navbar({ selected }: {
                             Sign in
                         </button>
                         :
-                        <button onClick={()=> auth.signOut()} className="GitHubButton">
-                            <img alt="Google icon button" src={Google2} />
-                            Sign out
+                        <button onClick={() => setSettings(true)} className="GitHubButton">
+                            {/* <img alt="Google icon button" src={Google2} /> */}
+                            <img alt={`${auth.currentUser.displayName} display icon`} style={{ borderRadius: '5px' }} src={auth.currentUser.photoURL}></img>
+                            {auth.currentUser.displayName}
                         </button>
                     }
                     <button className="ButtonIcon BurgerMenu" onClick={() => setIsOpen(!isOpen)} >
