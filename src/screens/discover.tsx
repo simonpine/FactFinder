@@ -39,7 +39,7 @@ function Discover() {
 
     }
     async function AddPage(): Promise<void> {
-        await console.log(numberArticles, newsList.length)
+        // await console.log(numberArticles, newsList.length)
         await setLoading(true)
         const result = await CallNewsHead(category, contry, q, prioritydomain, page)
         await setPage(result.nextPage)
@@ -80,7 +80,7 @@ function Discover() {
             <Navbar selected={2} />
             <main className="FullContainer">
                 <form onSubmit={Submit} className="SearchCont">
-                    <div className="PartOfFilters">
+                    <div className="PartOfFilters PartOfFiltersWrap">
                         <select value={contry} onChange={e => setContry(e.target.value)} >
                             <option value="" defaultValue="true">All countries</option>
                             <option value='af' >Afghanistan</option>

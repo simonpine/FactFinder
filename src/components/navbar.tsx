@@ -14,7 +14,8 @@ import linkedin from '../img/linkedin.png'
 import instragram from '../img/instagram.png'
 import simonPine from '../img/simonpine.png'
 import github from '../img/github-sign.png'
-import { useLocation, useNavigate  } from 'react-router-dom';
+import Logo from '../img/logo.svg'
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 // auth.signOut()
@@ -24,9 +25,7 @@ function Navbar({ selected }: {
     let location = useLocation();
     function signInWithGoogle() {
         const provider = new firebase.auth.GoogleAuthProvider()
-        auth.signInWithPopup(provider).then((result: string) => {
-            console.log("Logged In", result);
-        })
+        auth.signInWithPopup(provider)
     }
     const navigate = useNavigate();
     const [user] = useAuthState(auth)
@@ -49,7 +48,7 @@ function Navbar({ selected }: {
                             <h3>{auth.currentUser.displayName}</h3>
                         </div>
                         <button onClick={() => {
-                            if(location.pathname === '/saved'){
+                            if (location.pathname === '/saved') {
                                 setSettings(false)
                                 navigate('/')
                                 auth.signOut()
@@ -95,16 +94,16 @@ function Navbar({ selected }: {
                 </ul>
                 <div className="MiniIconCont">
                     <a className="MiniIconInformation" target="blank" href="https://www.linkedin.com/in/simon-pineda-0b8abb251/">
-                        <img alt="Linkedin of Simon Pineda" src={linkedin}/>
+                        <img alt="Linkedin of Simon Pineda" src={linkedin} />
                     </a>
                     <a className="MiniIconInformation" target="blank" href="https://www.simonpine.com">
-                        <img alt="Portfolio of Simon Pineda" src={simonPine}/>
+                        <img alt="Portfolio of Simon Pineda" src={simonPine} />
                     </a>
                     <a className="MiniIconInformation" target="blank" href="https://github.com/simonpine">
-                        <img alt="Github of Simon Pineda" src={github}/>
+                        <img alt="Github of Simon Pineda" src={github} />
                     </a>
                     <a className="MiniIconInformation" target="blank" href="https://www.instagram.com/simonpineda0521/">
-                        <img alt="Instagram of Simon Pineda" src={instragram}/>
+                        <img alt="Instagram of Simon Pineda" src={instragram} />
                     </a>
                 </div>
             </div>
@@ -113,9 +112,12 @@ function Navbar({ selected }: {
                     <h2 className='NavTitle'>Fact</h2>
                     <h2 className="NavTitle FinderBorder">Finder</h2>
                     <h3 className="MiniDescrip">Explore &  <br></br> Discover</h3>
+                    <div className='LogoNavMobil MagicalBorder'>
+                        <img alt='FactFinder logo' src={Logo} />
+                    </div>
                 </Link>
                 <div className="AppTitleUni2">
-                    <a className="GitHubButton" target="blank" href="https://github.com/simonpine/FactFinder">
+                    <a id="GithubButton" className="GitHubButton" target="blank" href="https://github.com/simonpine/FactFinder">
                         <img alt="Github icon button" src={git} />
                         Model code
                     </a>

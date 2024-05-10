@@ -37,6 +37,19 @@
         border: 0.3rem solid map-get($map:$colors, $key: 'specialDetail2');
     }
   }
+  @keyframes colorLoopMini {
+    0% {
+        border: 0.3rem solid map-get($map:$colors, $key: 'specialDetail2');
+    }
+  
+    50% {
+        border: 0.3rem solid map-get($map:$colors, $key: 'specialDetail');
+    }
+  
+    100% {
+        border: 0.3rem solid map-get($map:$colors, $key: 'specialDetail2');
+    }
+  }
 .navbar{
     z-index: 1;
     // position: sticky;
@@ -249,3 +262,26 @@
         font-size: 1.5rem;
     }
 }
+.LogoNavMobil{
+    display: none;
+}
+@media (max-width: 750px) {
+    .AppTitleUni{
+        & .NavTitle, .MiniDescrip{
+            display: none !important;
+        }
+    }
+    .LogoNavMobil{
+        display: block;
+        border-radius: 5px;
+        padding: 5px;
+        width: 20px;
+        height: 20px;
+        animation-name: colorLoopMini;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+    }
+    #GithubButton{
+        display: none;
+    }
+  }

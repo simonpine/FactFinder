@@ -298,7 +298,7 @@ select {
 }
 
 .FullContNew {
-  
+
   top: 0px;
   z-index: 5;
   width: 960px;
@@ -334,7 +334,20 @@ select {
 
 @media (max-width: 1050px) {
   .FullContNew {
-    width: 90%;
+    width: 85vw;
+  }
+}
+
+@media (max-width: 750px) {
+  .FullContNew {
+    flex-direction: column;
+    max-height: 80vh;
+    padding: 10px;
+    & p {
+      max-height: none;
+      max-width: none;
+      overflow: visible;
+    }
   }
 }
 
@@ -353,18 +366,37 @@ select {
   border-radius: 10px;
 
 }
-.Part1FullNew{
+
+.Part1FullNew {
   gap: 10px;
   display: flex;
   flex-direction: column;
 }
-.MiniInfoFullBox{
+
+.MiniInfoFullBox {
   color: map-get($map: $colors, $key: 'mainWhite');
   font-size: 1.3rem;
   font-weight: 400;
 }
-.MiniInfoFullBox2{
+
+.MiniInfoFullBox2 {
   margin-top: 10px;
   @extend .MiniInfoFullBox;
   font-weight: 600;
+}
+
+@media (max-width: 840px) {
+  .SearchCont {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+  .PartOfFilters{
+    justify-content: space-between;
+  }
+  .PartOfFiltersWrap{
+    flex-wrap: wrap;
+  }
+  .SearchByQ{
+    width: 100%;
+  }
 }

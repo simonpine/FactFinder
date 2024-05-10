@@ -23,19 +23,11 @@ function App() {
                 <img alt='FactFinder logo' src={Logo} />
               </div>
             </div>
-            <p>Lorem ipsum dolor sit amet consectetur adipiscing, elit odio faucibus nec justo, sodales habitasse euismod ridiculus convallis. At ultrices hendrerit eleifend mollis donec bibendum laoreet, integer felis urna sociis tortor accumsan proin, ante dignissim rhoncus fames feugiat dis. Primis tempor vestibulum auctor non class, nunc malesuada sem arcu semper, quam nullam viverra curae. Id parturient dictumst cras suscipit morbi, blandit torquent risus iaculis ad tempus, inceptos quisque molestie neque. Purus nam ut volutpat hac magna duis dui leo erat eros, congue in ultricies sociosqu porta etiam interdum vivamus velit. Penatibus tristique pellentesque mus vel placerat est, fusce platea nulla quis.
+            <p>FactFinder is a solution to the contemporary problem of polarization, sensationalism, and fake news. With artificial intelligence and natural language processing, this news source engine lets users identify easily how polarized are the news, and what is the possibility that each news is fake. The objective is not to create a new news source but to unify the ones that already exist around the world, and let people have their own criteria about what are they reading.
             </p>
           </div>
         </div>
         <div className='HorizontalContLand CommentsCont'>
-          {/* <div className='CartComent'>
-            <div>
-              <img alt='User icon' src='https://lh3.googleusercontent.com/a/ACg8ocKkcJhQE10oTEvEbDo9fsLixAvQzLtMMboJhNwHIXvgk_sJV-3O=s96-c'></img>
-              <h4>Simon Pineda</h4>
-            </div>
-            <p className='commentP'>dignissim rhoncus fames feugiat dis. Primis tempor vestibulum auctor non class, nunc malesuada sem arcu semper, quam nullam.</p>
-          </div> */}
-
           <Comment name={'SimonPine'} comment={'dignissim rhoncus fames feugiat dis. Primis tempor vestibulum auctor non class, nunc malesuada sem arcu semper, quam nullam'} picture={'https://lh3.googleusercontent.com/a/ACg8ocKkcJhQE10oTEvEbDo9fsLixAvQzLtMMboJhNwHIXvgk_sJV-3O=s96-c'}/>
 
         </div>
