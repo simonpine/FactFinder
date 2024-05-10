@@ -17,7 +17,7 @@ function App() {
               <h2 className='PercentageItem img1'>50%</h2>
               <h2 className='PercentageItem img2'>90%</h2>
               <div className='PercentageItem Fil'>
-                {/* <img alt='FactFinder logo' src={LogoSimon} /> */}
+                <img alt='FactFinder logo' src={LogoSimon} />
               </div>
               <div className='PercentageItem MagicalBorder'>
                 <img alt='FactFinder logo' src={Logo} />
@@ -28,13 +28,15 @@ function App() {
           </div>
         </div>
         <div className='HorizontalContLand CommentsCont'>
-          <div className='CartComent'>
+          {/* <div className='CartComent'>
             <div>
               <img alt='User icon' src='https://lh3.googleusercontent.com/a/ACg8ocKkcJhQE10oTEvEbDo9fsLixAvQzLtMMboJhNwHIXvgk_sJV-3O=s96-c'></img>
               <h4>Simon Pineda</h4>
             </div>
             <p className='commentP'>dignissim rhoncus fames feugiat dis. Primis tempor vestibulum auctor non class, nunc malesuada sem arcu semper, quam nullam.</p>
-          </div>
+          </div> */}
+
+          <Comment name={'SimonPine'} comment={'dignissim rhoncus fames feugiat dis. Primis tempor vestibulum auctor non class, nunc malesuada sem arcu semper, quam nullam'} picture={'https://lh3.googleusercontent.com/a/ACg8ocKkcJhQE10oTEvEbDo9fsLixAvQzLtMMboJhNwHIXvgk_sJV-3O=s96-c'}/>
 
         </div>
       </div>

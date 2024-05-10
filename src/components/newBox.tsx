@@ -1,15 +1,9 @@
-import mark from '../img/bookmark.png'
-import mark2 from '../img/bookmark-(2).png'
-import { useState } from 'react';
-import { auth } from '../fireBaseCom'
-import { useAuthState } from 'react-firebase-hooks/auth'
 import LinkImg from '../img/link-alt.png'
 
 function NewBox({ newDetails, setTheNew }: {
     newDetails: any;
     setTheNew: any
 }) {
-    console.log(newDetails)
     return (
         <>
             <div className="FullContNew">
@@ -19,7 +13,7 @@ function NewBox({ newDetails, setTheNew }: {
                     }                    <a target="blank" href={newDetails.link} className="LinkButton"> <img alt='A lenk to the source' src={LinkImg} />Source link</a>
                     <h2 className="TitleInFullNew">{newDetails.title}</h2>
                     <h3 className='MiniInfoFullBox'>Date: {newDetails.pubDate.slice(0, 10)}</h3>
-                    <h3 className='MiniInfoFullBox'>By: {newDetails.creator}</h3>
+                    <h3 className='MiniInfoFullBox'>By: {newDetails.creator ? newDetails.creator : 'Unknown'}</h3>
                     <div className='BarsCont'>
                         <div>
                             <h5 className='MiniInfoFullBox2'>Polarization percentage: </h5>
@@ -37,7 +31,7 @@ function NewBox({ newDetails, setTheNew }: {
                         </div>
                     </div>
                 </div>
-                <p>{newDetails.content?  newDetails.content : newDetails.description}</p>
+                <p>{newDetails.content ? newDetails.content : newDetails.description}</p>
             </div>
             <div onClick={() => setTheNew({ content: '' })} className="ContWithTheQuit">
             </div>

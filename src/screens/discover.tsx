@@ -78,7 +78,7 @@ function Discover() {
                 </NewBox>
             }
             <Navbar selected={2} />
-            <div className="FullContainer">
+            <main className="FullContainer">
                 <form onSubmit={Submit} className="SearchCont">
                     <div className="PartOfFilters">
                         <select value={contry} onChange={e => setContry(e.target.value)} >
@@ -322,7 +322,7 @@ function Discover() {
                                 newsList.length > 0 ?
                                     newsList.map((notc: any) => {
                                         return notc.title !== '[Removed]' ? (
-                                            <NewCard setTheNew={setShowNew} newDetails={notc} key={notc.article_id} />
+                                            <NewCard setReload={undefined} setTheNew={setShowNew} newDetails={notc} key={notc.article_id} />
                                         ) :
                                             (<></>)
                                     })
@@ -355,7 +355,7 @@ function Discover() {
                         </div>
                     }
                 </div>
-            </div>
+            </main>
         </>
     );
 }

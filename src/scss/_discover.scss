@@ -298,6 +298,7 @@ select {
 }
 
 .FullContNew {
+  
   top: 0px;
   z-index: 5;
   width: 960px;
@@ -306,7 +307,8 @@ select {
   border-radius: 15px;
   display: flex;
   gap: 20px;
-  max-height: 900px;
+  max-height: 80%;
+  overflow: auto;
 
   & p {
     min-width: 50%;

@@ -10,21 +10,25 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import firebase from "firebase/compat/app";
 import lock from '../img/lock.png'
 
-// import linkedin from '../img/linkedin.png'
-// import instragram from '../img/instagram.png'
-// import simonPine from '../img/simonpine.png'
-// import github from '../img/github-sign.png'
+import linkedin from '../img/linkedin.png'
+import instragram from '../img/instagram.png'
+import simonPine from '../img/simonpine.png'
+import github from '../img/github-sign.png'
+import { useLocation, useNavigate  } from 'react-router-dom';
+
 
 // auth.signOut()
 function Navbar({ selected }: {
     selected: number;
 }) {
+    let location = useLocation();
     function signInWithGoogle() {
         const provider = new firebase.auth.GoogleAuthProvider()
         auth.signInWithPopup(provider).then((result: string) => {
             console.log("Logged In", result);
         })
     }
+    const navigate = useNavigate();
     const [user] = useAuthState(auth)
     const [isOpen, setIsOpen] = useState(false);
     const [settings, setSettings] = useState(false)
@@ -39,12 +43,17 @@ function Navbar({ selected }: {
                             <button onClick={() => setSettings(false)} className="ButtonIcon CloseButton">
                                 <img alt="Close Button" src={close} />
                             </button>
-                            <img className="UserLogoSettings" src={auth.currentUser.photoURL} />
+                            <img alt="User logged icon" className="UserLogoSettings" src={auth.currentUser.photoURL} />
                         </div>
                         <div className="NameAndLogo">
                             <h3>{auth.currentUser.displayName}</h3>
                         </div>
                         <button onClick={() => {
+                            if(location.pathname === '/saved'){
+                                setSettings(false)
+                                navigate('/')
+                                auth.signOut()
+                            }
                             setSettings(false)
                             auth.signOut()
                         }} className="GitHubButton ColorChangeButton">
@@ -85,7 +94,7 @@ function Navbar({ selected }: {
                     </li>
                 </ul>
                 <div className="MiniIconCont">
-                    {/* <a className="MiniIconInformation" target="blank" href="https://www.linkedin.com/in/simon-pineda-0b8abb251/">
+                    <a className="MiniIconInformation" target="blank" href="https://www.linkedin.com/in/simon-pineda-0b8abb251/">
                         <img alt="Linkedin of Simon Pineda" src={linkedin}/>
                     </a>
                     <a className="MiniIconInformation" target="blank" href="https://www.simonpine.com">
@@ -96,15 +105,15 @@ function Navbar({ selected }: {
                     </a>
                     <a className="MiniIconInformation" target="blank" href="https://www.instagram.com/simonpineda0521/">
                         <img alt="Instagram of Simon Pineda" src={instragram}/>
-                    </a> */}
+                    </a>
                 </div>
             </div>
             <nav className="navbar">
-                <div className="AppTitleUni">
+                <Link to={{ pathname: "/" }} className="AppTitleUni">
                     <h2 className='NavTitle'>Fact</h2>
                     <h2 className="NavTitle FinderBorder">Finder</h2>
                     <h3 className="MiniDescrip">Explore &  <br></br> Discover</h3>
-                </div>
+                </Link>
                 <div className="AppTitleUni2">
                     <a className="GitHubButton" target="blank" href="https://github.com/simonpine/FactFinder">
                         <img alt="Github icon button" src={git} />

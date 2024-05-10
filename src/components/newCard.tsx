@@ -2,14 +2,16 @@ import errorImg from '../img/image-slash.png'
 import mark from '../img/bookmark.png'
 import mark2 from '../img/bookmark-(2).png'
 import { useState } from 'react';
-import { auth } from '../fireBaseCom'
+import { auth, db } from '../fireBaseCom'
 import { useAuthState } from 'react-firebase-hooks/auth'
+import { doc, getDoc, updateDoc, setDoc } from "firebase/firestore"
 
-function NewCard({ newDetails, setTheNew }: {
+function NewCard({ newDetails, setTheNew, setReload }: {
     setTheNew: any;
     newDetails: any;
+    setReload: any
 }) {
-    const [selected, setSelected] = useState(false);
+    const [selected, setSelected] = useState(setReload !== undefined);
     const [user] = useAuthState(auth)
 
     return (
@@ -43,7 +45,31 @@ function NewCard({ newDetails, setTheNew }: {
                     Read more
                 </button>
                 {user &&
-                    <button className='MarkButton' onClick={() => setSelected(!selected)}>
+                    <button className='MarkButton' onClick={async () => {
+                        const itemsColection = await doc(db, 'users', user.uid)
+                        await getDoc(itemsColection).then((snap) => {
+                            if (snap.exists()) {
+                                const dart = snap.data().SavedNews
+                                if (!dart.some((item: any) => item.article_id === newDetails.article_id)) {
+                                    updateDoc(itemsColection, { SavedNews: [...dart, newDetails] })
+                                }
+                                else {
+                                    for (let i = 0; i < dart.length; i++) {
+                                        if (dart[i].article_id === newDetails.article_id) {
+                                            dart.splice(i, 1);
+                                        }
+                                    }
+                                    updateDoc(itemsColection, { SavedNews: [...dart] })
+                                }
+                            }
+                            else {
+                                setDoc(itemsColection, { SavedNews: [newDetails] })
+                            }
+                        })
+                        await setSelected(!selected)
+                        setReload !== undefined && setReload(Math.random)
+
+                    }}>
                         <img alt='Check box for save the new' src={selected ? mark2 : mark} />
                     </button>
                 }
