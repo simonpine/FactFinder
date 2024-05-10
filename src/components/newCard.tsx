@@ -47,11 +47,14 @@ function NewCard({ newDetails, setTheNew, setReload }: {
                 {user &&
                     <button className='MarkButton' onClick={async () => {
                         const itemsColection = await doc(db, 'users', user.uid)
-                        await getDoc(itemsColection).then((snap) => {
+                        await setSelected(!selected)
+                        await getDoc(itemsColection).then(async (snap) => {
                             if (snap.exists()) {
-                                const dart = snap.data().SavedNews
+                                const dart = await snap.data().SavedNews
                                 if (!dart.some((item: any) => item.article_id === newDetails.article_id)) {
-                                    updateDoc(itemsColection, { SavedNews: [...dart, newDetails] })
+                                    console.log(newDetails)
+
+                                    newDetails && await updateDoc(itemsColection, { SavedNews: [...dart, newDetails] })
                                 }
                                 else {
                                     for (let i = 0; i < dart.length; i++) {
@@ -59,14 +62,13 @@ function NewCard({ newDetails, setTheNew, setReload }: {
                                             dart.splice(i, 1);
                                         }
                                     }
-                                    updateDoc(itemsColection, { SavedNews: [...dart] })
+                                    await updateDoc(itemsColection, { SavedNews: [...dart] })
                                 }
                             }
                             else {
-                                setDoc(itemsColection, { SavedNews: [newDetails] })
+                                newDetails && setDoc(itemsColection, { SavedNews: [newDetails] })
                             }
                         })
-                        await setSelected(!selected)
                         setReload !== undefined && setReload(Math.random)
 
                     }}>
