@@ -41,7 +41,9 @@ function NewCard({ newDetails, setTheNew, setReload }: {
             </div>
             <h4 className='NewTitleCard'>{newDetails.title}</h4>
             <div className='ButtonContCard'>
-                <button onClick={() => { setTheNew(newDetails) }} className='GitHubButton ColorChangeButton'>
+                <button onClick={() => { 
+                    document.body.style.overflow = 'hidden'
+                    setTheNew(newDetails) }} className='GitHubButton ColorChangeButton'>
                     Read more
                 </button>
                 {user &&

@@ -33,7 +33,10 @@ function NewBox({ newDetails, setTheNew }: {
                 </div>
                 <p>{newDetails.content ? newDetails.content : newDetails.description}</p>
             </div>
-            <div onClick={() => setTheNew({ content: '' })} className="ContWithTheQuit">
+            <div onClick={() => {
+                document.body.style.overflow = 'auto'
+                setTheNew({ content: '' })
+            }} className="ContWithTheQuit">
             </div>
         </>
     )

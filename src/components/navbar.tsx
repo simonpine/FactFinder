@@ -61,9 +61,15 @@ function Navbar({ selected }: {
                     </div>
                 </>
             }
-            {isOpen && <div onClick={() => setIsOpen(false)} className="BackButtonToClose"></div>}
+            {isOpen && <div onClick={() => {
+                document.body.style.overflow = 'auto'
+                setIsOpen(false)
+            }} className="BackButtonToClose"></div>}
             <div className={`SideBar ${!isOpen && "SideBarHide"}`}>
-                <button onClick={() => setIsOpen(false)} className="ButtonIcon CloseButton">
+                <button onClick={() => {
+                    document.body.style.overflow = 'auto'
+                    setIsOpen(false)
+                }} className="ButtonIcon CloseButton">
                     <img alt="Close Button" src={close} />
                 </button>
                 <ul className="ListNavCont">
@@ -133,7 +139,10 @@ function Navbar({ selected }: {
                             {auth.currentUser.displayName}
                         </button>
                     }
-                    <button className="ButtonIcon BurgerMenu" onClick={() => setIsOpen(!isOpen)} >
+                    <button className="ButtonIcon BurgerMenu" onClick={() => {
+                        document.body.style.overflow = 'hidden'
+                        setIsOpen(!isOpen)
+                    }} >
                         <img alt="Button to display side menu" src={burger} />
                     </button>
                 </div>
