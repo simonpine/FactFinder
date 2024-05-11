@@ -20,7 +20,6 @@ function Saved() {
     async function LoadData() {
       // await setLoading(true)
       const itemsColection = doc(db, 'users', user.uid)
-
       await getDoc(itemsColection).then((snap) => {
         if (snap.exists()) {
           const dart = snap.data().SavedNews
