@@ -28,7 +28,7 @@ function NewCard({ newDetails, setTheNew, setReload }: {
                     </div>
                     <div>
                         <h5 className='ClasificationText'>Falsity: </h5>
-                        <h5 className='ClasificationText' style={{ color: (100 * Math.abs(newDetails.falsity)) > 70 ? '#ff2b2b' : (100 * Math.abs(newDetails.falsity)) > 30 ? '#e872ff' : '#24FF00' }}>{`${(100 * Math.abs(newDetails.falsity))}%`}</h5>
+                        <h5 className='ClasificationText' style={{ color: (100 * Math.abs(newDetails.falsity)) > 70 ? '#ff2b2b' : (100 * Math.abs(newDetails.falsity)) > 30 ? '#e872ff' : '#24FF00' }}>{`${Math.round(100 * (Math.abs((newDetails.falsity))))}%`}</h5>
                         <div className='Progresbar'>
                             <div style={{ width: `${(100 * Math.abs(newDetails.falsity))}%`, backgroundColor: (100 * Math.abs(newDetails.falsity)) > 70 ? '#ff2b2b' : (100 * Math.abs(newDetails.falsity)) > 30 ? '#e872ff' : '#24FF00' }}></div>
                         </div>
@@ -52,8 +52,7 @@ function NewCard({ newDetails, setTheNew, setReload }: {
                             if (snap.exists()) {
                                 const dart = await snap.data().SavedNews
                                 if (!dart.some((item: any) => item.article_id === newDetails.article_id)) {
-                                    console.log(newDetails)
-
+                                    // console.log(newDetails)
                                     newDetails && await updateDoc(itemsColection, { SavedNews: [...dart, newDetails] })
                                 }
                                 else {

@@ -81,7 +81,10 @@ function Discover() {
             <main className="FullContainer">
                 <form onSubmit={Submit} className="SearchCont">
                     <div className="PartOfFilters PartOfFiltersWrap">
-                        <select value={contry} onChange={e => setContry(e.target.value)} >
+                        <select value={contry} onChange={async(e) => {
+                            await setContry(e.target.value)
+                            await FetchData()
+                            }} >
                             <option value="" defaultValue="true">All countries</option>
                             <option value='af' >Afghanistan</option>
                             <option value='al' >Albania</option>
@@ -282,7 +285,10 @@ function Discover() {
                             <option value='zm' >Zambia</option>
                             <option value='zw' >Zimbabwe</option>
                         </select>
-                        <select value={category} onChange={e => setCategory(e.target.value)} >
+                        <select value={category} onChange={async(e) => {
+                            await setCategory(e.target.value)
+                            await FetchData()
+                            }} >
                             <option value='top'>All categories</option>
                             <option value='business'>Business</option>
                             <option value='crime'>Crime</option>
@@ -301,7 +307,10 @@ function Discover() {
                             <option value='tourism'>Tourism</option>
                             <option value='world'>World</option>
                         </select>
-                        <select value={prioritydomain} onChange={e => setPrioritydomain(e.target.value)} >
+                        <select value={prioritydomain} onChange={async(e) => {
+                            await setPrioritydomain(e.target.value)
+                            await FetchData()
+                            }} >
                             <option value=''>No priority</option>
                             <option value='top'>Top</option>
                             <option value='medium'>Medium</option>

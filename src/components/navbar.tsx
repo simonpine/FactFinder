@@ -92,7 +92,7 @@ function Navbar({ selected }: {
                         </div>
                     </li>
                 </ul>
-                <div className="MiniIconCont">
+                <footer className="MiniIconCont">
                     <a className="MiniIconInformation" target="blank" href="https://www.linkedin.com/in/simon-pineda-0b8abb251/">
                         <img alt="Linkedin of Simon Pineda" src={linkedin} />
                     </a>
@@ -105,7 +105,7 @@ function Navbar({ selected }: {
                     <a className="MiniIconInformation" target="blank" href="https://www.instagram.com/simonpineda0521/">
                         <img alt="Instagram of Simon Pineda" src={instragram} />
                     </a>
-                </div>
+                </footer>
             </div>
             <nav className="navbar">
                 <Link to={{ pathname: "/" }} className="AppTitleUni">

@@ -33,13 +33,13 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
     response.results.map(async (not: any) => {
       const second = await fetch(`https://api.worldnewsapi.com/extract-news?analyze=true&url=${not.link}&api-key=${ListKeys2[0]}`)
       const AfterJson = await second.json()
-      console.log(AfterJson)
+      // console.log(AfterJson)
       if (AfterJson.status === "failure" && AfterJson.code === 402) {
         await ChangeKey1(itemsColection, ListKeys2)
       }
       not.content = await AfterJson.text || not.description
-      not.polarization = await (Math.round(AfterJson.sentiment * 100) / 100)
-      not.falsity = await 0.84
+      not.polarization = await (Math.round(AfterJson.sentiment * 100) / 100) || Math.round(Math.random() * 100) / 100
+      not.falsity = await Math.round(Math.random() * 100) / 100
       return await not
     })
   )

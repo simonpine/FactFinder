@@ -44,6 +44,7 @@
     gap: 20px;
 
     & p {
+        background-color: map-get($map: $colors, $key: 'mainWhite');
         border: 0.5rem solid map-get($map: $colors, $key: 'mainDark');
         border-radius: 10px;
         padding: 20px;
@@ -67,8 +68,9 @@
 }
 
 .CommentsCont {
+    gap: 0.5rem;
     background-color: map-get($map: $colors, $key: 'mainDark');
-    padding: 10px;
+    padding: 0.5rem;
     border-radius: 10px;
     margin-top: 30px;
 }
@@ -76,7 +78,7 @@
 .CartComent {
     background-color: map-get($map: $colors, $key: 'mainWhite');
     padding: 15px;
-    max-width: 225px;
+    // max-width: 225px;
     border-radius: 5px;
 
     & div {
@@ -136,6 +138,7 @@
 }
 
 @media (max-width: 800px) {
+
     .HorizontalContLand {
         flex-direction: column;
         gap: 20px;
@@ -148,6 +151,9 @@
         & div {
             max-width: 100%;
         }
+    }
+    .CommentsCont{
+        gap: 0.5rem;
     }
 }
 

@@ -24,7 +24,7 @@ function NewBox({ newDetails, setTheNew }: {
                         </div>
                         <div>
                             <h5 className='MiniInfoFullBox2'>Falsity percentage: </h5>
-                            <h5 className='ClasificationText' style={{ color: (100 * Math.abs(newDetails.falsity)) > 70 ? '#ff2b2b' : (100 * Math.abs(newDetails.falsity)) > 30 ? '#e872ff' : '#24FF00' }}>{`${(100 * Math.abs(newDetails.falsity))}%`}</h5>
+                            <h5 className='ClasificationText' style={{ color: (100 * Math.abs(newDetails.falsity)) > 70 ? '#ff2b2b' : (100 * Math.abs(newDetails.falsity)) > 30 ? '#e872ff' : '#24FF00' }}>{`${Math.round(100 * (Math.abs((newDetails.falsity))))}%`}</h5>
                             <div className='Progresbar'>
                                 <div style={{ width: `${(100 * Math.abs(newDetails.falsity))}%`, backgroundColor: (100 * Math.abs(newDetails.falsity)) > 70 ? '#ff2b2b' : (100 * Math.abs(newDetails.falsity)) > 30 ? '#e872ff' : '#24FF00' }}></div>
                             </div>
