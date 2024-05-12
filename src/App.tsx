@@ -46,7 +46,8 @@ function App() {
             text: 'Your text data'
           })
         });
-        await console.log(response.json())
+        const afertJson = await response.json()
+        await console.log(afertJson.text)
       }}>Test</button>
     </>
   );
