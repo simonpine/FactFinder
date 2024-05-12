@@ -35,6 +35,11 @@ function App() {
 
         </div>
       </div>
+      <button onClick={async()=>{
+        const res = await fetch('https://fact-finder-api.onrender.com/test')
+        const resJson = await res.json()
+        await console.log(resJson)
+      }}>Test</button>
     </>
   );
 }

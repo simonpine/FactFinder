@@ -36,10 +36,19 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
       // console.log(AfterJson)
       if (AfterJson.status === "failure" && AfterJson.code === 402) {
         await ChangeKey1(itemsColection, ListKeys2)
+
+        not.content = await AfterJson.text || not.description
+        not.polarization = await (Math.round(AfterJson.sentiment * 100) / 100) || Math.round(Math.random() * 100) / 100
+        not.falsity = await Math.round(Math.random() * 100) / 100
+        // not.falsity = await fetch('http://127.0.0.1:5000/predict').then((res: any)=> res.json().FakePosibility)
+        await fetch('http://127.0.0.1:5000/predict').then((res: any)=> console.log(res))
+
       }
-      not.content = await AfterJson.text || not.description
-      not.polarization = await (Math.round(AfterJson.sentiment * 100) / 100) || Math.round(Math.random() * 100) / 100
-      not.falsity = await Math.round(Math.random() * 100) / 100
+      else{
+        not.content = await AfterJson.text || not.description
+        not.polarization = await (Math.round(AfterJson.sentiment * 100) / 100) || Math.round(Math.random() * 100) / 100
+        // not.falsity = await fetch('http://127.0.0.1:5000/predict').then((res: any)=> res.json().FakePosibility)
+      }
       return await not
     })
   )
