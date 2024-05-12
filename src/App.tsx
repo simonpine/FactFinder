@@ -36,7 +36,7 @@ function App() {
         </div>
       </div>
       <button onClick={async () => {
-        const response = await fetch('https://your-flask-api-url/predict', {
+        const response = await fetch('https://fact-finder-api.onrender.com/predict', {
           // method: 'POST',
           // headers: {
           //   'Content-Type': 'application/json'
