@@ -47,7 +47,7 @@ function App() {
           })
         });
         const afertJson = await response.json()
-        await console.log(afertJson.text)
+        await console.log(afertJson.FakePosibility)
       }}>Test</button>
     </>
   );
