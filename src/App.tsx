@@ -37,10 +37,10 @@ function App() {
       </div>
       <button onClick={async () => {
         const response = await fetch('https://your-flask-api-url/predict', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
+          // method: 'POST',
+          // headers: {
+          //   'Content-Type': 'application/json'
+          // },
           body: JSON.stringify({
             title: 'Your title data',
             text: 'Your text data'
