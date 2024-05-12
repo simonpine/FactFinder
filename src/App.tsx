@@ -37,7 +37,7 @@ function App() {
       </div>
       <button onClick={async () => {
         const response = await fetch('https://fact-finder-api.onrender.com/predict', {
-          method: 'POST',
+          method: 'GET',
           headers: {
             'Content-Type': 'application/json'
           },
