@@ -56,8 +56,10 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
             text: (removeStopwords(not.content.toLowerCase().split(' ')), eng).join(' ')
           })
         });
-        console.log((removeStopwords(not.title.toLowerCase().split(' ')), eng).join(' '))
-        console.log((removeStopwords(not.content.toLowerCase().split(' ')), eng).join(' '))
+        await console.log(not.title)
+        await console.log(not.content)
+        await console.log((removeStopwords(not.title.toLowerCase().split(' ')), eng).join(' '))
+        await console.log((removeStopwords(not.content.toLowerCase().split(' ')), eng).join(' '))
         const afertJson = await responseIA.json()
         await console.log(afertJson)
 
