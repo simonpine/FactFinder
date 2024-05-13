@@ -12,13 +12,13 @@ function LoadingNew() {
             <div className='BarsCont'>
                 <div>
                     <h5 className='ClasificationText1 TextLoad'>Polarization: </h5>
-                    <h5 className='ClasificationText TextLoad' ></h5>
+                    <div className='ClasificationText TextLoad' ></div>
                     <div className='Progresbar TextLoad'>
                     </div>
                 </div>
                 <div>
                     <h5 className='ClasificationText TextLoad'>Falsity: </h5>
-                    <h5 className='ClasificationText TextLoad' ></h5>
+                    <div className='ClasificationText TextLoad' ></div>
                     <div className='Progresbar TextLoad'>
                     </div>
                 </div>
