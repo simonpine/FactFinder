@@ -17,14 +17,14 @@ function NewBox({ newDetails, setTheNew }: {
                     <div className='BarsCont'>
                         <figure>
                             <h5 className='MiniInfoFullBox2'>Polarization percentage: </h5>
-                            <h4 className='ClasificationText' style={{ color: (100 * Math.abs(newDetails.polarization)) > 70 ? '#ff2b2b' : (100 * Math.abs(newDetails.polarization)) > 30 ? '#e872ff' : '#24FF00' }}>{`${Math.round(100 * (Math.abs((newDetails.polarization))))}%`}</h4>
+                            <h4 className='ClasificationText' style={{ color: (100 * Math.abs(newDetails.polarization)) > 70 ? '#ff2b2b' : (100 * Math.abs(newDetails.polarization)) > 30 ? '#e872ff' : '#24FF00' }}>{`${Math.round(100 * (Math.abs((newDetails.polarization)))) !== 0 ? Math.round(100 * (Math.abs((newDetails.polarization)))) : '<1' }%`}</h4>
                             <div className='Progresbar'>
                                 <div style={{ width: `${(100 * Math.abs(newDetails.polarization))}%`, backgroundColor: (100 * Math.abs(newDetails.polarization)) > 70 ? '#ff2b2b' : (100 * Math.abs(newDetails.polarization)) > 30 ? '#e872ff' : '#24FF00' }}></div>
                             </div>
                         </figure>
                         <figure>
                             <h5 className='MiniInfoFullBox2'>Falsity percentage: </h5>
-                            <h4 className='ClasificationText' style={{ color: (100 * Math.abs(newDetails.falsity)) > 70 ? '#ff2b2b' : (100 * Math.abs(newDetails.falsity)) > 30 ? '#e872ff' : '#24FF00' }}>{`${Math.round(100 * (Math.abs((newDetails.falsity))))}%`}</h4>
+                            <h4 className='ClasificationText' style={{ color: (100 * Math.abs(newDetails.falsity)) > 70 ? '#ff2b2b' : (100 * Math.abs(newDetails.falsity)) > 30 ? '#e872ff' : '#24FF00' }}>{`${Math.round(100 * (Math.abs((newDetails.falsity)))) !== 0 ? Math.round(100 * (Math.abs((newDetails.falsity)))) : '<1' }%`}</h4>
                             <div className='Progresbar'>
                                 <div style={{ width: `${(100 * Math.abs(newDetails.falsity))}%`, backgroundColor: (100 * Math.abs(newDetails.falsity)) > 70 ? '#ff2b2b' : (100 * Math.abs(newDetails.falsity)) > 30 ? '#e872ff' : '#24FF00' }}></div>
                             </div>

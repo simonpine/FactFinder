@@ -7,7 +7,7 @@
     justify-content: center;
     align-items: center;
     color: map-get($map: $colors, $key: 'mainWhite');
-
+    font-size: 1.6rem;
     & img {
         width: 50%;
     }
