@@ -112,7 +112,7 @@ function Navbar({ selected }: {
                 </footer>
             </aside>
             <nav className="navbar">
-                <Link to={{ pathname: "/" }} className="AppTitleUni">
+                <Link to={{ pathname: "/" }} className={`AppTitleUni ${selected === 1 && 'nonnHover'}`}>
                     <h2 className='NavTitle'>Fact</h2>
                     <h2 className="NavTitle FinderBorder">Finder</h2>
                     <h1 className="MiniDescrip">Explore &  <br></br> Discover</h1>

@@ -14,8 +14,8 @@ function App() {
           <div className='SquarsPlusText'>
             <aside className='squarsCont'>
 
-              <h5 className='PercentageItem img1'>97%</h5>
-              <h5 className='PercentageItem img2'>98%</h5>
+              <h5 className='PercentageItem img1 srcore2'><span>97%</span></h5>
+              <h5 className='PercentageItem img2 srcores'><span>98%</span></h5>
               <div className='PercentageItem Fil'>
                 <img alt='FactFinder logo' src={LogoSimon} />
               </div>
