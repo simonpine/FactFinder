@@ -70,9 +70,11 @@
         transition: 0.2s ease;
         margin-bottom: 20px;
         opacity: 0;
-        max-width: 5%;
+        // max-width: 5%;
         position: absolute;
-        content: "F1 score"
+        content: "F1 \a score";
+        white-space: pre;
+        
     }
 }
 
@@ -103,9 +105,9 @@
         transition: 0.2s ease;
         margin-bottom: 20px;
         opacity: 0;
-        max-width: 10%;
         position: absolute;
-        content: "Recall score"
+        content: "Recall \a score";
+        white-space: pre;
     }
 }
 
