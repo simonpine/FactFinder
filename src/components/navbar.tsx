@@ -64,7 +64,7 @@ function Navbar({ selected }: {
             {isOpen && <div onClick={() => {
                 setIsOpen(false)
             }} className="BackButtonToClose"></div>}
-            <div className={`SideBar ${!isOpen && "SideBarHide"}`}>
+            <aside className={`SideBar ${!isOpen && "SideBarHide"}`}>
                 <button onClick={() => {
                     setIsOpen(false)
                 }} className="ButtonIcon CloseButton">
@@ -110,12 +110,12 @@ function Navbar({ selected }: {
                         <img alt="Instagram of Simon Pineda" src={instragram} />
                     </a>
                 </footer>
-            </div>
+            </aside>
             <nav className="navbar">
                 <Link to={{ pathname: "/" }} className="AppTitleUni">
                     <h2 className='NavTitle'>Fact</h2>
                     <h2 className="NavTitle FinderBorder">Finder</h2>
-                    <h3 className="MiniDescrip">Explore &  <br></br> Discover</h3>
+                    <h1 className="MiniDescrip">Explore &  <br></br> Discover</h1>
                     <div className='LogoNavMobil MagicalBorder'>
                         <img alt='FactFinder logo' src={Logo} />
                     </div>

@@ -20,16 +20,16 @@ function Discover() {
     const [q, setQ] = useState('')
     const [contry, setContry] = useState('')
 
-    const [showNew, setShowNew] = useState({content: ''})
+    const [showNew, setShowNew] = useState({ content: '' })
     async function Submit(evt: any) {
         await evt.preventDefault();
-        await FetchData()
+        await FetchData(contry, category, prioritydomain, q)
     }
-    async function FetchData(): Promise<void> {
+    async function FetchData(contChange: string, cateChange: string, prioChange: string, qChange: string): Promise<void> {
         await setNewsList([]);
         await setNumberArticles(0)
         await setChargingData(true);
-        const result = await CallNewsHead(category, contry, q, prioritydomain, 1)
+        const result = await CallNewsHead(cateChange, contChange, qChange, prioChange, 1)
         if (result.status !== 'error') {
             await setPage(result.nextPage)
             await setNumberArticles(result.totalResults)
@@ -54,7 +54,7 @@ function Discover() {
         await setContry("")
         await setPrioritydomain("")
         await setPage(1)
-        await FetchData()
+        await FetchData('', 'top', '', '')
     }
     useEffect(() => {
         async function FetchData(): Promise<void> {
@@ -81,10 +81,10 @@ function Discover() {
             <main className="FullContainer">
                 <form onSubmit={Submit} className="SearchCont">
                     <div className="PartOfFilters PartOfFiltersWrap">
-                        <select value={contry} onChange={async(e) => {
+                        <select value={contry} onChange={async (e) => {
                             await setContry(e.target.value)
-                            await FetchData()
-                            }} >
+                            await FetchData(e.target.value, category, prioritydomain, q)
+                        }} >
                             <option value="" defaultValue="true">All countries</option>
                             <option value='af' >Afghanistan</option>
                             <option value='al' >Albania</option>
@@ -285,10 +285,10 @@ function Discover() {
                             <option value='zm' >Zambia</option>
                             <option value='zw' >Zimbabwe</option>
                         </select>
-                        <select value={category} onChange={async(e) => {
+                        <select value={category} onChange={async (e) => {
                             await setCategory(e.target.value)
-                            await FetchData()
-                            }} >
+                            await FetchData(contry, e.target.value, prioritydomain, q)
+                        }} >
                             <option value='top'>All categories</option>
                             <option value='business'>Business</option>
                             <option value='crime'>Crime</option>
@@ -307,10 +307,10 @@ function Discover() {
                             <option value='tourism'>Tourism</option>
                             <option value='world'>World</option>
                         </select>
-                        <select value={prioritydomain} onChange={async(e) => {
+                        <select value={prioritydomain} onChange={async (e) => {
                             await setPrioritydomain(e.target.value)
-                            await FetchData()
-                            }} >
+                            await FetchData(contry, category, e.target.value, q)
+                        }} >
                             <option value=''>No priority</option>
                             <option value='top'>Top</option>
                             <option value='medium'>Medium</option>
@@ -324,7 +324,7 @@ function Discover() {
                         </button>
                     </div>
                 </form>
-                <div className="AllNewsCont">
+                <section className="AllNewsCont">
                     <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 1000: 3 }}>
                         <Masonry gutter={'15px'}>
                             {!chargingData ?
@@ -363,7 +363,7 @@ function Discover() {
                             </button>
                         </div>
                     }
-                </div>
+                </section>
             </main>
         </>
     );

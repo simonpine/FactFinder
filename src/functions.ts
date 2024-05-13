@@ -1,6 +1,6 @@
 import { doc, getDoc, updateDoc } from "firebase/firestore"
 import { db } from './fireBaseCom'
-import { removeStopwords, eng } from 'stopword'
+import { removeStopwords } from 'stopword'
 
 const itemsColection = doc(db, 'ApiKeys', 'APIKEYSGetContent')
 const itemsColection2 = doc(db, 'ApiKeys', 'APIKEYSGetNews')
@@ -32,20 +32,29 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
 
   await Promise.all(
     response.results.map(async (not: any) => {
+      if (ListKeys2[0] === "TEST"){
+        // if (true){
+        not.polarization = await Math.round(Math.random() * 100) / 100
+        not.falsity = await Math.round(Math.random() * 100) / 100
+        not.content = not.description
+        return await not
+      }
       const second = await fetch(`https://api.worldnewsapi.com/extract-news?analyze=true&url=${not.link}&api-key=${ListKeys2[0]}`)
       const AfterJson = await second.json()
       if (AfterJson.status === "failure" && AfterJson.code === 402) {
         await ChangeKey1(itemsColection, ListKeys2)
-        not.content = await AfterJson.text || not.description
+        not.content = await not.description
         not.polarization = await Math.round(Math.random() * 100) / 100
-        not.falsity = 1
+        not.falsity = await Math.round(Math.random() * 100) / 100
       }
       else{
-        await console.log("Hola a todos")
-        not.content = await AfterJson.text || not.description
-        not.polarization = await (Math.round(AfterJson.sentiment * 100) / 100) || Math.round(Math.random() * 100) / 100
-        // not.falsity = await (Math.round(AfterJson.sentiment * 100) / 100) || Math.round(Math.random() * 100) / 100
-
+        if (AfterJson.text.includes('ERROR')){
+          not.content = await not.description
+        }
+        else{
+          not.content = await AfterJson.text
+        }
+        not.polarization = await AfterJson.sentiment ? (Math.round(AfterJson.sentiment * 100) / 100) : Math.round(Math.random() * 100) / 100
         const responseIA = await fetch('https://fact-finder-api.onrender.com/predict', {
           method: 'POST',
           headers: {
@@ -56,13 +65,7 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
             text: (removeStopwords(not.content.toLowerCase().split(' '))).join(' ')
           })
         });
-        await console.log(not.title)
-        await console.log(not.content)
-        await console.log((removeStopwords(not.title.toLowerCase().split(' '))).join(' '))
-        await console.log((removeStopwords(not.content.toLowerCase().split(' '))).join(' '))
         const afertJson = await responseIA.json()
-        await console.log(afertJson)
-
         not.falsity = await afertJson.FakePosibility
       }
       return await not

@@ -299,8 +299,7 @@ select {
 }
 
 .FullContNew {
-  flex-direction: column;
-  justify-content: flex-end;
+
   top: 0px;
   z-index: 5;
   width: 960px;
@@ -308,23 +307,18 @@ select {
   padding: 20px;
   border-radius: 15px;
   display: flex;
-  gap: 15px;
+  gap: 20px;
+  max-height: 80%;
   overflow: auto;
 
-  & .InnetBox {
-    display: flex;
-    gap: 20px;
-    max-height: 80%;
-
-    & p {
-      min-width: 50%;
-      overflow: auto;
-      max-height: 600px;
-      font-size: 1rem;
-      line-height: 1.8;
-      max-width: 70%;
-      color: map-get($map: $colors, $key: 'mainWhite');
-    }
+  & p {
+    min-width: 50%;
+    overflow: auto;
+    max-height: 600px;
+    font-size: 1rem;
+    line-height: 1.8;
+    max-width: 70%;
+    color: map-get($map: $colors, $key: 'mainWhite');
   }
 
   position: fixed;
@@ -347,16 +341,13 @@ select {
 
 @media (max-width: 750px) {
   .FullContNew {
-    padding: 15px;
-    & .InnetBox {
-      flex-direction: column;
-      max-height: 80vh;
-      & p {
-        max-height: none;
-        max-width: none;
-        overflow: visible;
-        padding-bottom: 10px;
-      }
+    flex-direction: column;
+    max-height: 80vh;
+    padding: 10px;
+    & p {
+      max-height: none;
+      max-width: none;
+      overflow: visible;
     }
   }
 }
@@ -400,16 +391,13 @@ select {
     flex-direction: column-reverse;
     gap: 20px;
   }
-
-  .PartOfFilters {
+  .PartOfFilters{
     justify-content: space-between;
   }
-
-  .PartOfFiltersWrap {
+  .PartOfFiltersWrap{
     flex-wrap: wrap;
   }
-
-  .SearchByQ {
+  .SearchByQ{
     width: 100%;
   }
 }

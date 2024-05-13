@@ -4,13 +4,13 @@ function Comment({ name, picture, comment }: {
     comment: string
 }) {
     return (
-        <div className='CartComent'>
+        <article className='CartComent'>
             <div>
                 <img alt='User icon' src={picture}></img>
                 <h4>{name}</h4>
             </div>
             <p className='commentP'>{comment}</p>
-        </div>
+        </article>
     )
 }
 export default Comment

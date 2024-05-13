@@ -22,6 +22,7 @@ html{
     background-image: radial-gradient(map-get($map:$colors, $key: 'dots') 1.5px, transparent 0);
     background-size: 35px 35px;
     font-size: 80%;
+    background-attachment: fixed
 }
 .FullContainer{
     // background-color: #262626;
