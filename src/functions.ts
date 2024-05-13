@@ -52,14 +52,14 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            title: (removeStopwords(not.title.toLowerCase().split(' ')), eng).join(' '),
-            text: (removeStopwords(not.content.toLowerCase().split(' ')), eng).join(' ')
+            title: (removeStopwords(not.title.toLowerCase().split(' '))).join(' '),
+            text: (removeStopwords(not.content.toLowerCase().split(' '))).join(' ')
           })
         });
         await console.log(not.title)
         await console.log(not.content)
-        await console.log((removeStopwords(not.title.toLowerCase().split(' ')), eng).join(' '))
-        await console.log((removeStopwords(not.content.toLowerCase().split(' ')), eng).join(' '))
+        await console.log((removeStopwords(not.title.toLowerCase().split(' '))).join(' '))
+        await console.log((removeStopwords(not.content.toLowerCase().split(' '))).join(' '))
         const afertJson = await responseIA.json()
         await console.log(afertJson)
 
