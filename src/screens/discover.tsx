@@ -330,7 +330,7 @@ function Discover() {
                             {!chargingData ?
                                 newsList.length > 0 ?
                                     newsList.map((notc: any) => {
-                                        return notc.title !== '[Removed]' && notc.content !== '' ? (
+                                        return notc.title !== '[Removed]' && notc.content ? (
                                             <NewCard setReload={undefined} setTheNew={setShowNew} newDetails={notc} key={notc.article_id} />
                                         ) :
                                             (<></>)

@@ -36,6 +36,7 @@ function App() {
           <Comment name={'Uparela'} comment={'As a person who studies politics, I find this application very interesting and useful.'} picture={'https://lh3.googleusercontent.com/a/ACg8ocLlcNPmrqiwWlvbfC44e72fjWpCb9mlYMylulEf0t7XI1wNsA=s96-c'}/>
         </section>
         <Link to={{ pathname: "/discover" }} className='GitHubButton'>Get informed now <img className='MoveOnHover' alt='Arrow to indicate the page change' src={arrow}/></Link>
+        <br></br>
       </main>
     </>
   );
