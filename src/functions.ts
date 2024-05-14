@@ -35,7 +35,24 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
       if (ListKeys2[0] === "TEST"){
         // if (true){
         not.polarization = await Math.round(Math.random() * 100) / 100
-        not.falsity = await Math.round(Math.random() * 100) / 100
+        // not.falsity = await Math.round(Math.random() * 100) / 100
+        if (not.description) {
+            const responseIA = await fetch('https://fact-finder-api.onrender.com/predict', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+            title: (removeStopwords(not.title.toLowerCase().split(' '))).join(' '),
+            text: (removeStopwords(not.description.toLowerCase().split(' '))).join(' ')
+          })
+        });
+        else {
+          not.falsity = await Math.round(Math.random() * 100) / 100
+        }
+        const afertJson = await responseIA.json()
+        not.falsity = await afertJson.FakePosibility
+        }
         not.content = not.description
         return await not
       }
