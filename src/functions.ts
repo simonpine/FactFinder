@@ -46,13 +46,13 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
             title: (removeStopwords(not.title.toLowerCase().split(' '))).join(' '),
             text: (removeStopwords(not.description.toLowerCase().split(' '))).join(' ')
           })
-        });
+        })
+          const afertJson = await responseIA.json()
+          not.falsity = await afertJson.FakePosibility
         }
         else {
           not.falsity = await Math.round(Math.random() * 100) / 100
         }
-        const afertJson = await responseIA.json()
-        not.falsity = await afertJson.FakePosibility
         }
         not.content = not.description
         return await not
