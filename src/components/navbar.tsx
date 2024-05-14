@@ -3,7 +3,6 @@ import { useState } from "react";
 import burger from '../img/menu-burger.png'
 import git from '../img/github-logo.png'
 import Google from '../img/Google.png'
-// import Google2 from '../img/Google2.png'
 import close from '../img/cross-small.png'
 import { auth } from '../fireBaseCom'
 import { useAuthState } from 'react-firebase-hooks/auth'
@@ -35,11 +34,17 @@ function Navbar({ selected }: {
         <>
             {settings &&
                 <>
-                    <div onClick={() => setSettings(false)} className="ContWithTheQuit">
+                    <div onClick={() => {
+                        document.body.style.overflow = 'auto'
+                        setSettings(false)
+                    }} className="ContWithTheQuit">
                     </div>
                     <div className="FullContSetting">
                         <div className="NameAndLogo">
-                            <button onClick={() => setSettings(false)} className="ButtonIcon CloseButton">
+                            <button onClick={() => {
+                                document.body.style.overflow = 'auto'
+                                setSettings(false)
+                            }} className="ButtonIcon CloseButton">
                                 <img alt="Close Button" src={close} />
                             </button>
                             <img alt="User logged icon" className="UserLogoSettings" src={auth.currentUser.photoURL} />
@@ -96,23 +101,34 @@ function Navbar({ selected }: {
                         </div>
                     </li>
                 </ul>
-                <footer className="MiniIconCont">
-                    <a className="MiniIconInformation" target="blank" href="https://www.linkedin.com/in/simon-pineda-0b8abb251/">
-                        <img alt="Linkedin of Simon Pineda" src={linkedin} />
-                    </a>
-                    <a className="MiniIconInformation" target="blank" href="https://www.simonpine.com">
-                        <img alt="Portfolio of Simon Pineda" src={simonPine} />
-                    </a>
-                    <a className="MiniIconInformation" target="blank" href="https://github.com/simonpine">
-                        <img alt="Github of Simon Pineda" src={github} />
-                    </a>
-                    <a className="MiniIconInformation" target="blank" href="https://www.instagram.com/simonpineda0521/">
-                        <img alt="Instagram of Simon Pineda" src={instragram} />
-                    </a>
+                <footer>
+                    <ul className="MiniIconCont">
+                        <li>
+                            <a className="MiniIconInformation" target="blank" href="https://www.linkedin.com/in/simon-pineda-0b8abb251/">
+                                <img alt="Linkedin of Simon Pineda" src={linkedin} />
+                            </a>
+                        </li>
+                        <li>
+                            <a className="MiniIconInformation" target="blank" href="https://www.simonpine.com">
+                                <img alt="Portfolio of Simon Pineda" src={simonPine} />
+                            </a>
+                        </li>
+                        <li>
+                            <a className="MiniIconInformation" target="blank" href="https://github.com/simonpine">
+                                <img alt="Github of Simon Pineda" src={github} />
+                            </a>
+                        </li>
+                        <li>
+                            <a className="MiniIconInformation" target="blank" href="https://www.instagram.com/simonpineda0521/">
+                                <img alt="Instagram of Simon Pineda" src={instragram} />
+                            </a>
+                        </li>
+                    </ul>
+                    <h5 className="Rights">© 2024 SimonPine, Inc</h5>
                 </footer>
             </aside>
             <nav className="navbar">
-                <Link to={{ pathname: "/" }} className={`AppTitleUni ${selected === 1 && 'nonnHover'}`}>
+                <Link to={{ pathname: "/discover" }} className={`AppTitleUni ${selected === 2 && 'nonnHover'}`}>
                     <h2 className='NavTitle'>Fact</h2>
                     <h2 className="NavTitle FinderBorder">Finder</h2>
                     <h1 className="MiniDescrip">Explore &  <br></br> Discover</h1>
@@ -121,7 +137,7 @@ function Navbar({ selected }: {
                     </div>
                 </Link>
                 <div className="AppTitleUni2">
-                    <a id="GithubButton" className="GitHubButton" target="blank" href="https://github.com/simonpine/FactFinder">
+                    <a id="GithubButton" className="GitHubButton" target="blank" href="https://github.com/simonpine/fact-finder-api/blob/main/DataScienceAnalisisModel.ipynb">
                         <img alt="Github icon button" src={git} />
                         Model code
                     </a>
@@ -131,7 +147,10 @@ function Navbar({ selected }: {
                             Sign in
                         </button>
                         :
-                        <button onClick={() => setSettings(true)} className="GitHubButton">
+                        <button onClick={() => {
+                            document.body.style.overflow = 'hidden'
+                            setSettings(true)
+                        }} className="GitHubButton">
                             {/* <img alt="Google icon button" src={Google2} /> */}
                             <img alt={`${auth.currentUser.displayName} display icon`} style={{ borderRadius: '5px' }} src={auth.currentUser.photoURL}></img>
                             {auth.currentUser.displayName}
