@@ -53,7 +53,7 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
         else {
           not.falsity = await Math.round(Math.random() * 100) / 100
         }
-        }
+  
         not.content = not.description
         return await not
       }
