@@ -47,6 +47,7 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
             text: (removeStopwords(not.description.toLowerCase().split(' '))).join(' ')
           })
         });
+        }
         else {
           not.falsity = await Math.round(Math.random() * 100) / 100
         }
