@@ -36,7 +36,7 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
         // if (true){
         not.polarization = await Math.round(Math.random() * 100) / 100
         // not.falsity = await Math.round(Math.random() * 100) / 100
-        if (not.description) {
+        if (!!not.description) {
             const responseIA = await fetch('https://fact-finder-api.onrender.com/predict', {
             method: 'POST',
             headers: {
