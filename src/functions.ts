@@ -32,28 +32,29 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
 
   await Promise.all(
     response.results.map(async (not: any) => {
-      if (ListKeys2[0] === "TEST"){
+      if (ListKeys2[0] === "TEST") {
         // if (true){
-        not.polarization = await Math.round(Math.random() * 100) / 100
         // not.falsity = await Math.round(Math.random() * 100) / 100
         if (!!not.description) {
-            const responseIA = await fetch('https://fact-finder-api.onrender.com/predict', {
+          const responseIA = await fetch('https://fact-finder-api.onrender.com/predict', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-            title: (removeStopwords(not.title.toLowerCase().split(' '))).join(' '),
-            text: (removeStopwords(not.description.toLowerCase().split(' '))).join(' ')
+              title: (removeStopwords(not.title.toLowerCase().split(' '))).join(' '),
+              text: (removeStopwords(not.description.toLowerCase().split(' '))).join(' ')
+            })
           })
-        })
           const afertJson = await responseIA.json()
           not.falsity = await afertJson.FakePosibility
+          not.polarization = await afertJson.Polarity.compound
         }
         else {
+          not.polarization = await Math.round(Math.random() * 100) / 100
           not.falsity = await Math.round(Math.random() * 100) / 100
         }
-  
+
         not.content = not.description
         return await not
       }
@@ -65,11 +66,11 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
         not.polarization = await Math.round(Math.random() * 100) / 100
         not.falsity = await Math.round(Math.random() * 100) / 100
       }
-      else{
-        if (AfterJson.text.includes('ERROR')){
+      else {
+        if (AfterJson.text.includes('ERROR')) {
           not.content = await not.description
         }
-        else{
+        else {
           not.content = await AfterJson.text
         }
         not.polarization = await AfterJson.sentiment ? (Math.round(AfterJson.sentiment * 100) / 100) : Math.round(Math.random() * 100) / 100
