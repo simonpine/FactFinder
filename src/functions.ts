@@ -52,7 +52,7 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
           })
           const afertJson = await responseIA.json()
           not.falsity = await afertJson.FakePosibility
-          not.polarization = await afertJson.Polarity.compound
+          not.polarization = await 1 - afertJson.Polarity.neu
         }
         else {
           not.polarization = await Math.round(Math.random() * 100) / 100
@@ -89,7 +89,7 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
         });
         
         const afertJson = await responseIA.json()
-        not.polarization = await  AfterJson.sentiment ? (Math.round(AfterJson.sentiment * 100) / 100) : afertJson.Polarity.compound
+        not.polarization = await  AfterJson.sentiment ? (Math.round(AfterJson.sentiment * 100) / 100) :  1 - afertJson.Polarity.neu
         not.falsity = await afertJson.FakePosibility
       }
       return await not
