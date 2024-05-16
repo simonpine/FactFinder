@@ -1,6 +1,8 @@
 import { doc, getDoc, updateDoc } from "firebase/firestore"
 import { db } from './fireBaseCom'
 import { removeStopwords } from 'stopword'
+import { extract } from '@extractus/article-extractor'
+
 
 const itemsColection = doc(db, 'ApiKeys', 'APIKEYSGetContent')
 const itemsColection2 = doc(db, 'ApiKeys', 'APIKEYSGetNews')
@@ -33,8 +35,11 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
   await Promise.all(
     response.results.map(async (not: any) => {
       if (ListKeys2[0] === "TEST") {
-        // if (true){
-        // not.falsity = await Math.round(Math.random() * 100) / 100
+
+
+        const arEx = await extract(not.link)
+        not.description = await (arEx?.content)?.replace(/<[^>]*>?/gm, '')
+
         if (!!not.description) {
           const responseIA = await fetch('https://fact-finder-api.onrender.com/predict', {
             method: 'POST',
