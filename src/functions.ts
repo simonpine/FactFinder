@@ -1,7 +1,6 @@
 import { doc, getDoc, updateDoc } from "firebase/firestore"
 import { db } from './fireBaseCom'
 import { removeStopwords } from 'stopword'
-import { extract } from '@extractus/article-extractor'
 
 
 const itemsColection = doc(db, 'ApiKeys', 'APIKEYSGetContent')
@@ -37,8 +36,8 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
       if (ListKeys2[0] === "TEST") {
 
 
-        const arEx = await extract(not.link)
-        not.description = await (arEx?.content)?.replace(/<[^>]*>?/gm, '')
+        // const arEx = await extract(not.link)
+        // not.description = await (arEx?.content).replace(/<[^>]*>?/gm, '')
 
         if (!!not.description) {
           const responseIA = await fetch('https://fact-finder-api.onrender.com/predict', {
@@ -78,7 +77,6 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
         else {
           not.content = await AfterJson.text
         }
-        not.polarization = await AfterJson.sentiment ? (Math.round(AfterJson.sentiment * 100) / 100) : Math.round(Math.random() * 100) / 100
         const responseIA = await fetch('https://fact-finder-api.onrender.com/predict', {
           method: 'POST',
           headers: {
@@ -90,6 +88,7 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
           })
         });
         const afertJson = await responseIA.json()
+        not.polarization = await afertJson.Polarity.compound
         not.falsity = await afertJson.FakePosibility
       }
       return await not
