@@ -87,8 +87,9 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
             text: (removeStopwords(not.content.toLowerCase().split(' '))).join(' ')
           })
         });
+        
         const afertJson = await responseIA.json()
-        not.polarization = await afertJson.Polarity.compound
+        not.polarization = await  AfterJson.sentiment ? (Math.round(AfterJson.sentiment * 100) / 100) : afertJson.Polarity.compound
         not.falsity = await afertJson.FakePosibility
       }
       return await not
