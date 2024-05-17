@@ -20,7 +20,7 @@ function App() {
               <h5 className='PercentageItem img1 srcore2'><span>97%</span></h5>
               <h5 className='PercentageItem img2 srcores'><span>98%</span></h5>
               <div className='PercentageItem Fil'>
-                <img alt='FactFinder logo' src={LogoSimon} />
+                {/* <img alt='FactFinder logo' src={LogoSimon} /> */}
               </div>
               <div className='PercentageItem MagicalBorder'>
                 <img alt='FactFinder logo' src={Logo} />

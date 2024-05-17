@@ -101,7 +101,7 @@ function Navbar({ selected }: {
                         </div>
                     </li>
                 </ul>
-                <footer>
+                {/* <footer>
                     <ul className="MiniIconCont">
                         <li>
                             <a className="MiniIconInformation" target="blank" href="https://www.linkedin.com/in/simon-pineda-0b8abb251/">
@@ -125,7 +125,7 @@ function Navbar({ selected }: {
                         </li>
                     </ul>
                     <h5 className="Rights">© 2024 SimonPine, Inc</h5>
-                </footer>
+                </footer> */}
             </aside>
             <nav className="navbar">
                 <Link to={{ pathname: "/discover" }} className={`AppTitleUni ${selected === 2 && 'nonnHover'}`}>
