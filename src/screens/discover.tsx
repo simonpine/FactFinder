@@ -57,6 +57,7 @@ function Discover() {
         await FetchData('', 'top', '', '')
     }
     useEffect(() => {
+        document.body.style.overflow = 'auto'
         async function FetchData(): Promise<void> {
             await setChargingData(true)
             await setNewsList([])

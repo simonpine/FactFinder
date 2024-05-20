@@ -346,3 +346,17 @@ footer{
     gap: 20px;
     // align-items: stretch
 }
+
+.ButtonCloseBox{
+    background: none;
+    border: none;
+    height: 50px;
+    & img{
+        width: 50px;
+        filter: invert(0.85);
+    }
+    margin: 20px;
+    &:hover{
+        cursor: pointer;
+    }
+}

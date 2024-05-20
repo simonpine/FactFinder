@@ -8,7 +8,7 @@ import { auth } from '../fireBaseCom'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import firebase from "firebase/compat/app";
 import lock from '../img/lock.png'
-
+import { useKeyPressEvent } from "react-use";
 import linkedin from '../img/linkedin.png'
 import instragram from '../img/instagram.png'
 import simonPine from '../img/simonpine.png'
@@ -30,6 +30,9 @@ function Navbar({ selected }: {
     const [user] = useAuthState(auth)
     const [isOpen, setIsOpen] = useState(false);
     const [settings, setSettings] = useState(false)
+    useKeyPressEvent("Escape", ()=> {
+        document.body.style.overflow = 'auto'
+        setSettings(false)});
     return (
         <>
             {settings &&

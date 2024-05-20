@@ -6,8 +6,13 @@ import Comment from './components/comment';
 import LogoSimon from './img/LogoSImon.png'
 import { Link } from 'react-router-dom';
 import arrow from './img/arrow-small-right.png'
+import { useEffect } from 'react';
 
 function App() {
+  useEffect(() => {
+    document.body.style.overflow = 'auto'
+
+  }, [])
   return (
     <>
       <Navbar selected={1} />

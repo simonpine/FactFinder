@@ -10,13 +10,13 @@ import NewBox from "../components/newBox";
 const forLoad: Array<number> = [1, 2, 3, 4, 5, 6]
 
 function Saved() {
-  
   const [newsList, setNewsList]: any = useState([])
   const [loading, setLoading] = useState(true)
   const [showNew, setShowNew] = useState({ content: '' })
-  const [user] = useAuthState(auth)
+  const [user]: any = useAuthState(auth)
   const [reload, setReload] = useState(Math.random())
   useEffect(() => {
+    document.body.style.overflow = 'auto'
     async function LoadData() {
       // await setLoading(true)
       const itemsColection = doc(db, 'users', user.uid)
