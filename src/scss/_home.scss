@@ -275,20 +275,28 @@
             max-width: 100%;
         }
     }
-
+    .MainPhoto{
+        display: none;
+    }
     .CommentsCont {
         gap: 0.5rem;
     }
+
+
 }
-@media (max-width: 600) {
-    .BannerPhoto{
-       display: none;
+
+@media (max-width: 600px) {
+    .MainBanner {
+        grid-template-columns: 1fr;
+        & .BannerPhoto {
+            display: none;
+        }
     }
-   }
-@media (max-width: 449) {
+}
+
+@media (max-width: 449px) {
     .HorizontalContLand {
         flex-direction: column;
-        gap: 20px;
 
         & img {
             max-width: 100%;

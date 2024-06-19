@@ -19,7 +19,7 @@ function App() {
         <div className='MainBanner'>
 
           <div>
-            <h1 >News browser against disinformation</h1>
+            <h1 >News browser against disinformation.</h1>
             <br></br>
             <Link to={{ pathname: "/discover" }} className='GitHubButton'>Get informed now <img className='MoveOnHover' alt='Arrow to indicate the page change' src={arrow} /></Link>
 
