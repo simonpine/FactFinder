@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 // import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {RouterProvider} from "react-router-dom"
+import { BrowserRouter } from "react-router-dom"
 // import {Form, RouterProvider} from "react-router-dom"
-import { router } from './router';
+import Navbar from './components/navbar';
+import { RoutesForTheApp } from './router';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+
 const firebaseConfig = {
   apiKey: "AIzaSyB906OhepAbiFJMtZYHdzRJjnb8j0xCvYc",
   authDomain: "factfinder-f2dd7.firebaseapp.com",
@@ -25,7 +27,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-      <RouterProvider router={router}/>  
+    <BrowserRouter>
+      <Navbar />
+      <RoutesForTheApp/>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

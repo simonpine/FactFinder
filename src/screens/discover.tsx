@@ -1,4 +1,3 @@
-import Navbar from "../components/navbar";
 import { CallNewsHead } from "../functions";
 import { useState, useEffect } from "react";
 import SearchImg from '../img/search.png'
@@ -7,8 +6,22 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 import LoadingNew from "../components/loadingCard";
 import error from '../img/times-hexagon.png';
 import NewBox from "../components/newBox";
+import handleViewport, { type InjectedViewportProps } from 'react-in-viewport';
+
 
 const forLoad: Array<number> = [1, 2, 3, 4, 5, 6]
+
+const Block = (props: InjectedViewportProps<HTMLDivElement>) => {
+    const { forwardedRef } = props;
+    return (
+      <div ref={forwardedRef}>
+      </div>
+    );
+  };
+
+const ViewportBlock = handleViewport(Block);
+
+
 function Discover() {
     const [page, setPage] = useState(1)
     const [numberArticles, setNumberArticles] = useState(0)
@@ -56,6 +69,7 @@ function Discover() {
         await setPage(1)
         await FetchData('', 'top', '', '')
     }
+
     useEffect(() => {
         document.body.style.overflow = 'auto'
         async function FetchData(): Promise<void> {
@@ -78,7 +92,7 @@ function Discover() {
                 <NewBox setTheNew={setShowNew} newDetails={showNew}>
                 </NewBox>
             }
-            <Navbar selected={2} />
+            {/* <Navbar selected={2} /> */}
             <main className="FullContainer">
                 <form onSubmit={Submit} className="SearchCont">
                     <div className="PartOfFilters PartOfFiltersWrap">
@@ -355,14 +369,16 @@ function Discover() {
                         </Masonry>
                     </ResponsiveMasonry>
                     {newsList.length < numberArticles &&
-                        <div id='Visor'>
+                        <div>
+                            <ViewportBlock onEnterViewport={AddPage} />
                             <button disabled={loading} onClick={AddPage} className="GitHubButton">Show more
                                 {loading &&
                                     <span className="mini-loading"></span>
                                 }
 
                             </button>
-                        </div>
+                        </div >
+
                     }
                 </section>
             </main>

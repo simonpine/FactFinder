@@ -3,26 +3,30 @@
         margin-left: 0px;
         margin-right: 0px;
     }
+
     5% {
         margin-left: 3px;
         margin-right: 0px;
     }
-    7%{
+
+    7% {
         margin-left: 0px;
         margin-right: 0px;
     }
+
     10% {
         margin-left: 0px;
         margin-right: 3px;
     }
+
     15% {
         margin-left: 0px;
-        margin-right: 0px;    
+        margin-right: 0px;
     }
 
     100% {
         margin-left: 0px;
-        margin-right: 0px;    
+        margin-right: 0px;
     }
 }
 
@@ -74,7 +78,7 @@
         position: absolute;
         content: "F1 \a score";
         white-space: pre;
-        
+
     }
 }
 
@@ -146,14 +150,15 @@
         border: 0.5rem solid map-get($map: $colors, $key: 'mainDark');
         border-radius: 10px;
         padding: 20px;
-        font-size: 1.2rem;
-        font-weight: 500;
+        font-size: 1rem;
+        // font-weight: 500;
     }
 }
 
 .MainPhoto {
     // background-color: azure;
-    max-width: 45%;
+    // max-width: 45%;
+    width: 100%;
     // height:100%;
     object-fit: cover;
     border: 0.5rem solid map-get($map: $colors, $key: 'mainDark');
@@ -161,6 +166,7 @@
 }
 
 .HorizontalContLand {
+    gap: 30px;
     display: flex;
     justify-content: space-between;
 }
@@ -238,6 +244,22 @@
     }
 }
 
+.MainBanner {
+    margin-bottom: 60px;
+    display: grid;
+    grid-template-columns: 1fr 0.7fr;
+    gap: 30px;
+    align-items: center;
+
+    // gap: 0px;
+    & h1 {
+        font-weight: 700;
+        font-size: 3rem;
+        max-width: 500px;
+    }
+
+}
+
 @media (max-width: 800px) {
 
     .HorizontalContLand {
@@ -258,7 +280,11 @@
         gap: 0.5rem;
     }
 }
-
+@media (max-width: 600) {
+    .BannerPhoto{
+       display: none;
+    }
+   }
 @media (max-width: 449) {
     .HorizontalContLand {
         flex-direction: column;
@@ -274,11 +300,15 @@
         }
     }
 }
-.GitHubButton:hover .MoveOnHover{
+
+
+
+.GitHubButton:hover .MoveOnHover {
     transition: 0.3s ease;
     transform: translate(3px);
 }
-.GitHubButton .MoveOnHover{
+
+.GitHubButton .MoveOnHover {
     transition: 0.3s ease;
     // transform: translate(5px);
 }

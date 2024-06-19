@@ -2,7 +2,7 @@
 $colors:(
     'mainDark': #262626,
     'secondDark': #2626269f,
-    'dots': #2626264d,
+    'dots': #26262634,
     'specialDetail': #FF6666,
     'specialDetailBar': #ff6666a9,
     'specialDetail2': #ED81FF,
@@ -19,8 +19,8 @@ $colors:(
     font-family: "Montserrat", sans-serif;
 };
 html{
-    background-image: radial-gradient(map-get($map:$colors, $key: 'dots') 1.5px, transparent 0);
-    background-size: 35px 35px;
+    background-image: radial-gradient(map-get($map:$colors, $key: 'dots') 1.2px, transparent 0);
+    background-size: 25px 25px;
     font-size: 80%;
     background-attachment: fixed
 }
@@ -43,7 +43,4 @@ html{
 button:disabled{
     cursor:default;
 }
-html {
-    scrollbar-gutter: stable;
-  }
   

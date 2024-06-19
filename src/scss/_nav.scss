@@ -227,6 +227,7 @@
     color: map-get($map: $colors, $key: 'mainDark');
 
     &:hover {
+        cursor: default;
         border: none;
     }
 }

@@ -1,12 +1,11 @@
 import './App.scss';
-import Navbar from './components/navbar';
-import Banner from './img/title.jpg'
 import Logo from './img/logo.svg'
 import Comment from './components/comment';
 import LogoSimon from './img/LogoSImon.png'
 import { Link } from 'react-router-dom';
 import arrow from './img/arrow-small-right.png'
 import { useEffect } from 'react';
+import repre from './img/asd.svg'
 
 function App() {
   useEffect(() => {
@@ -15,10 +14,28 @@ function App() {
   }, [])
   return (
     <>
-      <Navbar selected={1} />
+      {/* <Navbar selected={1} /> */}
       <main className='FullContainer'>
+        <div className='MainBanner'>
+
+          <div>
+            <h1 >News browser against disinformation</h1>
+            <br></br>
+            <Link to={{ pathname: "/discover" }} className='GitHubButton'>Get informed now <img className='MoveOnHover' alt='Arrow to indicate the page change' src={arrow} /></Link>
+
+          </div>
+          <img className='BannerPhoto' src={repre} alt='People interactin with a news paper' />
+        </div>
         <div className='HorizontalContLand'>
-          <img className='MainPhoto' alt='Represents the news that this page is going to judge' src={Banner} />
+          {/* <img className='MainPhoto' alt='Represents the news that this page is going to judge' src={Banner} /> */}
+          <iframe
+
+            src={`https://www.youtube.com/embed/frjITitjisY`}
+            className='MainPhoto'
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen={false}
+            title="Embedded youtube"
+          />
           <div className='SquarsPlusText'>
             <aside className='squarsCont'>
 
@@ -36,12 +53,10 @@ function App() {
           </div>
         </div>
         <section className='HorizontalContLand CommentsCont'>
-          <Comment name={'Santiago Romero'} comment={'The web application has a lot of very interesting and innovative features, such as the "Polarization" and "Falsity" parameters that come with each of the news.'} picture={'https://lh3.googleusercontent.com/a/AAcHTtf08uiV86Qb-Yea9cHkHw-A3y7KDOH1EIzvpJA8Q9Bk=s96-c'}/>
-          <Comment name={'Cachumbin'} comment={'The web application isn´t easy to navigate, as the news section, which is the central part of the web application, isn´t in first-touch range inside of the web application.'} picture={'https://lh3.googleusercontent.com/a/AAcHTtdNcO0V0vYX3Ydg7iGOSmtbCbtJ6pEddclRO7FzTw=s96-c'}/>
-          <Comment name={'Uparela'} comment={'As a person who studies politics, I find this application very interesting and useful.'} picture={'https://lh3.googleusercontent.com/a/ACg8ocLlcNPmrqiwWlvbfC44e72fjWpCb9mlYMylulEf0t7XI1wNsA=s96-c'}/>
+          <Comment name={'Santiago Romero'} comment={'The web application has a lot of very interesting and innovative features, such as the "Polarization" and "Falsity" parameters that come with each of the news.'} picture={'https://lh3.googleusercontent.com/a/AAcHTtf08uiV86Qb-Yea9cHkHw-A3y7KDOH1EIzvpJA8Q9Bk=s96-c'} />
+          <Comment name={'Cachumbin'} comment={'The web application isn´t easy to navigate, as the news section, which is the central part of the web application, isn´t in first-touch range inside of the web application.'} picture={'https://lh3.googleusercontent.com/a/AAcHTtdNcO0V0vYX3Ydg7iGOSmtbCbtJ6pEddclRO7FzTw=s96-c'} />
+          <Comment name={'Uparela'} comment={'As a person who studies politics, I find this application very interesting and useful.'} picture={'https://lh3.googleusercontent.com/a/ACg8ocLlcNPmrqiwWlvbfC44e72fjWpCb9mlYMylulEf0t7XI1wNsA=s96-c'} />
         </section>
-        <Link to={{ pathname: "/discover" }} className='GitHubButton'>Get informed now <img className='MoveOnHover' alt='Arrow to indicate the page change' src={arrow}/></Link>
-        <br></br>
       </main>
     </>
   );

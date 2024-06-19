@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 import burger from '../img/menu-burger.png'
 import git from '../img/github-logo.png'
@@ -30,9 +30,10 @@ function Navbar({ selected }: {
     const [user] = useAuthState(auth)
     const [isOpen, setIsOpen] = useState(false);
     const [settings, setSettings] = useState(false)
-    useKeyPressEvent("Escape", ()=> {
+    useKeyPressEvent("Escape", () => {
         document.body.style.overflow = 'auto'
-        setSettings(false)});
+        setSettings(false)
+    });
     return (
         <>
             {settings &&
@@ -80,28 +81,41 @@ function Navbar({ selected }: {
                 </button>
                 <ul className="ListNavCont">
                     <li className="ListNavItem">
-                        <div className={`${selected !== 1 && 'borderDetail'}`}>
-                            <Link className={`NavMoveItem ${selected === 1 && 'NavOptionSelected'}`} to={{ pathname: "/" }}>Home</Link>
-                        </div>
+                        <NavLink style={{ textDecoration: 'none' }} to={{ pathname: "/" }}>
+                            {({ isActive }) => (
+                                <div className={`${!isActive && 'borderDetail'}`}>
+                                    <h3 onClick={() => {!isActive && setIsOpen(false)}} className={`NavMoveItem ${isActive && 'NavOptionSelected'}`} >Home</h3>
+                                </div>
+                            )}
+                        </NavLink>
                     </li>
                     <li className="ListNavItem">
-                        <div className={`${selected !== 2 && 'borderDetail'}`}>
-                            <Link className={`NavMoveItem ${selected === 2 && 'NavOptionSelected'}`} to={{ pathname: "/discover" }}>Discover</Link>
-                        </div>
+                        <NavLink style={{ textDecoration: 'none' }} to={{ pathname: "/discover" }}  >
+                            {({ isActive }) => (
+                                <div className={`${!isActive && 'borderDetail'}`}>
+                                    <h3 onClick={() => {!isActive && setIsOpen(false)}}  className={`NavMoveItem ${isActive && 'NavOptionSelected'}`} >Discover</h3>
+                                </div>
+                            )}
+                        </NavLink>
                     </li>
                     <li className="ListNavItem">
-                        <div className={`br ${selected !== 3 && 'borderDetail'} `}>
-                            {user ?
-                                <Link className={`NavMoveItem ${selected === 3 && 'NavOptionSelected'}`} to={{ pathname: "/saved" }}>Saved
-                                </Link>
-                                :
+                        {user ?
+                            <NavLink style={{ textDecoration: 'none' }} to={{ pathname: "/saved" }} onClick={() => { setIsOpen(false) }} >
+                                {({ isActive }) => (
+                                    <div className={`${!isActive && 'borderDetail'}`}>
+                                        <h3 onClick={() => { setIsOpen(false) }} className={`NavMoveItem ${isActive && 'NavOptionSelected'}`} >Saved</h3>
+                                    </div>
+                                )}
+                            </NavLink>
+                            :
+                            <div className="borderDetail">
                                 <div className="NavMoveItem">
                                     Saved
-                                    {!user && <img alt='Please log in to acces to this function' src={lock} />}
+                                    <img alt='Please log in to acces to this function' src={lock} />
 
                                 </div>
-                            }
-                        </div>
+                            </div >
+                        }
                     </li>
                 </ul>
                 <footer>
@@ -131,10 +145,10 @@ function Navbar({ selected }: {
                 </footer>
             </aside>
             <nav className="navbar">
-                <Link to={{ pathname: "/discover" }} className={`AppTitleUni ${selected === 2 && 'nonnHover'}`}>
+                <Link to={{ pathname: "/" }} className={`AppTitleUni ${selected === 2 && 'nonnHover'}`}>
                     <h2 className='NavTitle'>Fact</h2>
                     <h2 className="NavTitle FinderBorder">Finder</h2>
-                    <h1 className="MiniDescrip">Explore &  <br></br> Discover</h1>
+                    <h1 className="MiniDescrip">The truth of <br></br>world news.</h1>
                     <div className='LogoNavMobil MagicalBorder'>
                         <img alt='FactFinder logo' src={Logo} />
                     </div>

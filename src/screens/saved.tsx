@@ -1,4 +1,3 @@
-import Navbar from "../components/navbar";
 import { doc, getDoc } from "firebase/firestore"
 import { db, auth } from "../fireBaseCom";
 import { useState, useEffect } from "react";
@@ -40,7 +39,7 @@ function Saved() {
         <NewBox setTheNew={setShowNew} newDetails={showNew}>
         </NewBox>
       }
-      <Navbar selected={3} />
+      {/* <Navbar selected={3} /> */}
       <main className="FullContainer">
         <div className="AllNewsCont">
           <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 1000: 3 }}>
