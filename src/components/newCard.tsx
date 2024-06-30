@@ -6,10 +6,11 @@ import { auth, db } from '../fireBaseCom'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { doc, getDoc, updateDoc, setDoc } from "firebase/firestore"
 
-function NewCard({ newDetails, setTheNew, setReload }: {
+function NewCard({ newDetails, setTheNew, setReload, lock }: {
     setTheNew: any;
     newDetails: any;
-    setReload: any
+    setReload: any;
+    lock: Function
 }) {
     const [selected, setSelected] = useState(setReload !== undefined);
     const [user] = useAuthState(auth)
@@ -42,7 +43,7 @@ function NewCard({ newDetails, setTheNew, setReload }: {
             <h3 className='NewTitleCard'>{newDetails.title}</h3>
             <div className='ButtonContCard'>
                 <button onClick={() => {
-                    document.body.style.overflow = 'hidden'
+                    lock()
                     setTheNew(newDetails)
                 }} className='GitHubButton ColorChangeButton'>
                     Read more

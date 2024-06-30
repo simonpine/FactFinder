@@ -4,14 +4,9 @@ import Comment from './components/comment';
 import LogoSimon from './img/LogoSImon.png'
 import { Link } from 'react-router-dom';
 import arrow from './img/arrow-small-right.png'
-import { useEffect } from 'react';
 import repre from './img/asd.svg'
 
 function App() {
-  useEffect(() => {
-    document.body.style.overflow = 'auto'
-
-  }, [])
   return (
     <>
       {/* <Navbar selected={1} /> */}
@@ -27,7 +22,6 @@ function App() {
           <img className='BannerPhoto' src={repre} alt='People interactin with a news paper' />
         </div>
         <div className='HorizontalContLand'>
-          {/* <img className='MainPhoto' alt='Represents the news that this page is going to judge' src={Banner} /> */}
           <iframe
 
             src={`https://www.youtube.com/embed/frjITitjisY`}
@@ -39,8 +33,8 @@ function App() {
           <div className='SquarsPlusText'>
             <aside className='squarsCont'>
 
-              <h5 className='PercentageItem img1 srcore2'><span>97%</span></h5>
-              <h5 className='PercentageItem img2 srcores'><span>98%</span></h5>
+              <h3 className='PercentageItem img1 srcore2'><span>97%</span></h3>
+              <h3 className='PercentageItem img2 srcores'><span>98%</span></h3>
               <div className='PercentageItem Fil'>
                 <img alt='FactFinder logo' src={LogoSimon} />
               </div>

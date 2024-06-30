@@ -2,12 +2,13 @@ import LinkImg from '../img/link-alt.png'
 import { useKeyPressEvent } from "react-use";
 import closeButton from '../img/cross-small.png'
 
-function NewBox({ newDetails, setTheNew }: {
+function NewBox({ newDetails, setTheNew, unlock }: {
     newDetails: any;
     setTheNew: any
+    unlock: Function;
 }) {
     useKeyPressEvent("Escape", () => {
-        document.body.style.overflow = 'auto'
+        unlock()
         setTheNew({ content: '' })
     });
     return (
@@ -40,7 +41,7 @@ function NewBox({ newDetails, setTheNew }: {
                 <p>{newDetails.content ? newDetails.content : newDetails.description}</p>
             </article>
             <div onClick={() => {
-                document.body.style.overflow = 'auto'
+                unlock()
                 setTheNew({ content: '' })
             }} className="ContWithTheQuit">
                 <button className='ButtonCloseBox'>

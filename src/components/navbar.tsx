@@ -141,11 +141,11 @@ function Navbar({ selected }: {
                             </a>
                         </li>
                     </ul>
-                    <h5 className="Rights">© 2024 SimonPine, Inc</h5>
+                    <h4 className="Rights">© 2024 SimonPine, Inc</h4>
                 </footer>
             </aside>
             <nav className="navbar">
-                <Link to={{ pathname: "/" }} className={`AppTitleUni ${selected === 2 && 'nonnHover'}`}>
+                <Link to={{ pathname: "/" }} className={`AppTitleUni`}>
                     <h2 className='NavTitle'>Fact</h2>
                     <h2 className="NavTitle FinderBorder">Finder</h2>
                     <h1 className="MiniDescrip">The truth of <br></br>world news.</h1>

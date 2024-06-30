@@ -289,6 +289,7 @@ select {
 }
 
 .ContWithTheQuit {
+  animation: fadeinbg 0.2s ease;
   top: 0px;
   z-index: 1;
   position: fixed;
@@ -298,8 +299,33 @@ select {
   display: flex;
 }
 
-.FullContNew {
+@keyframes fadein {
+  from {
+    opacity: 0;
+    margin-top: 10px;
+  }
 
+  to {
+    opacity: 1;
+
+  }
+}
+
+@keyframes fadeinbg {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+
+  }
+}
+
+.FullContNew {
+  animation: fadein 0.2s ease;
+  // animation-name: fadein;
+  // animation-duration: 0.3s;
   top: 0px;
   z-index: 5;
   width: 960px;
@@ -344,6 +370,7 @@ select {
     flex-direction: column;
     max-height: 80vh;
     padding: 10px;
+
     & p {
       max-height: none;
       max-width: none;
@@ -391,13 +418,38 @@ select {
     flex-direction: column-reverse;
     gap: 20px;
   }
-  .PartOfFilters{
+
+  .PartOfFilters {
     justify-content: space-between;
   }
-  .PartOfFiltersWrap{
+
+  .PartOfFiltersWrap {
     flex-wrap: wrap;
   }
-  .SearchByQ{
+
+  .SearchByQ {
     width: 100%;
   }
+}
+
+.ErrorContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  & .ilustration {
+    width: 300px;
+  }
+
+  & p {
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+  & div{
+    width: 250px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+  }
+
 }

@@ -2,13 +2,21 @@ import { doc, getDoc } from "firebase/firestore"
 import { db, auth } from "../fireBaseCom";
 import { useState, useEffect } from "react";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
+import { useScrollLock } from 'usehooks-ts'
+import { Link } from "react-router-dom";
 import { useAuthState } from 'react-firebase-hooks/auth'
 import LoadingNew from "../components/loadingCard";
 import NewCard from "../components/newCard";
 import NewBox from "../components/newBox";
+import representation from '../img/Empty-pana.svg'
+import arrow from '../img/arrow-small-right.png'
+
 const forLoad: Array<number> = [1, 2, 3, 4, 5, 6]
 
 function Saved() {
+  const { lock, unlock } = useScrollLock({
+    autoLock: false,
+  })
   const [newsList, setNewsList]: any = useState([])
   const [loading, setLoading] = useState(true)
   const [showNew, setShowNew] = useState({ content: '' })
@@ -36,25 +44,24 @@ function Saved() {
   return (
     <>
       {showNew.content !== '' &&
-        <NewBox setTheNew={setShowNew} newDetails={showNew}>
+        <NewBox unlock={unlock} setTheNew={setShowNew} newDetails={showNew}>
         </NewBox>
       }
       {/* <Navbar selected={3} /> */}
       <main className="FullContainer">
         <div className="AllNewsCont">
-          <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 1000: 3 }}>
+          {newsList.length > 0 ? <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 1000: 3 }}>
             <Masonry gutter={'15px'}>
               {!loading ?
-                newsList.length > 0 ?
-                  newsList.map((notc: any) => {
-                    return notc.title !== '[Removed]' ? (
-                      <NewCard setReload={setReload} setTheNew={setShowNew} newDetails={notc} key={notc.article_id} />
-                      // <></>
-                    ) :
-                      (<></>)
-                  })
-                  :
-                  <></>
+
+                newsList.map((notc: any) => {
+                  return notc.title !== '[Removed]' ? (
+                    <NewCard lock={lock} setReload={setReload} setTheNew={setShowNew} newDetails={notc} key={notc.article_id} />
+                    // <></>
+                  ) :
+                    (<></>)
+                })
+
                 :
                 forLoad.map((a: number) => {
                   return (
@@ -63,7 +70,18 @@ function Saved() {
                 })
               }
             </Masonry>
-          </ResponsiveMasonry>
+          </ResponsiveMasonry> :
+            <div className="ErrorContainer">
+              <img className="ilustration" alt="You haven't save news, this seccition is wmpty" src={representation} />
+
+              <div>
+                <p className="NoNewsText">You haven't saved news</p>
+                <Link to={{ pathname: "/discover" }} className='GitHubButton'>Discover news <img className='MoveOnHover' alt='Arrow to indicate the page change' src={arrow} /></Link>
+
+              </div>
+
+            </div>
+          }
         </div>
       </main>
     </>
