@@ -1,6 +1,8 @@
 import { doc, getDoc, updateDoc } from "firebase/firestore"
 import { db } from './fireBaseCom'
 import { removeStopwords } from 'stopword'
+import { error } from "console"
+import { NULL } from "sass"
 
 
 const itemsColection = doc(db, 'ApiKeys', 'APIKEYSGetContent')
@@ -34,7 +36,7 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
   await Promise.all(
     response.results.map(async (not: any) => {
 
-      try {
+  
         if (ListKeys2[0] === "TEST") {
 
           if (!!not.description) {
@@ -91,11 +93,8 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
           not.falsity = await afertJson.FakePosibility
         }
         return await not
-      }
-      catch(error){
-        console.log(error)
-      }
+      
     })
-  )
-  return response
+  ).catch(()=>{console.log('ASJUIH')})
+  return {response: response, error: NULL}
 }

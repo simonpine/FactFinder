@@ -7,7 +7,7 @@ import close from '../img/cross-small.png'
 import { auth } from '../fireBaseCom'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import firebase from "firebase/compat/app";
-import lock from '../img/lock.png'
+import lockImg from '../img/lock.png'
 import { useKeyPressEvent } from "react-use";
 import linkedin from '../img/linkedin.png'
 import instragram from '../img/instagram.png'
@@ -15,12 +15,11 @@ import simonPine from '../img/simonpine.png'
 import github from '../img/github-sign.png'
 import Logo from '../img/logo.svg'
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useScrollLock } from 'usehooks-ts'
 
 
 // auth.signOut()
-function Navbar({ selected }: {
-    selected: number;
-}) {
+function Navbar() {
     let location = useLocation();
     function signInWithGoogle() {
         const provider = new firebase.auth.GoogleAuthProvider()
@@ -30,8 +29,11 @@ function Navbar({ selected }: {
     const [user] = useAuthState(auth)
     const [isOpen, setIsOpen] = useState(false);
     const [settings, setSettings] = useState(false)
+    const { lock, unlock } = useScrollLock({
+        autoLock: false,
+      })
     useKeyPressEvent("Escape", () => {
-        document.body.style.overflow = 'auto'
+        unlock()
         setSettings(false)
     });
     return (
@@ -39,14 +41,14 @@ function Navbar({ selected }: {
             {settings &&
                 <>
                     <div onClick={() => {
-                        document.body.style.overflow = 'auto'
+                        unlock()
                         setSettings(false)
                     }} className="ContWithTheQuit">
                     </div>
                     <div className="FullContSetting">
                         <div className="NameAndLogo">
                             <button onClick={() => {
-                                document.body.style.overflow = 'auto'
+                                unlock()
                                 setSettings(false)
                             }} className="ButtonIcon CloseButton">
                                 <img alt="Close Button" src={close} />
@@ -58,10 +60,12 @@ function Navbar({ selected }: {
                         </div>
                         <button onClick={() => {
                             if (location.pathname === '/saved') {
+                                unlock()
                                 setSettings(false)
                                 navigate('/')
                                 auth.signOut()
                             }
+                            unlock()
                             setSettings(false)
                             auth.signOut()
                         }} className="GitHubButton ColorChangeButton">
@@ -111,7 +115,7 @@ function Navbar({ selected }: {
                             <div className="borderDetail">
                                 <div className="NavMoveItem">
                                     Saved
-                                    <img alt='Please log in to acces to this function' src={lock} />
+                                    <img alt='Please log in to acces to this function' src={lockImg} />
 
                                 </div>
                             </div >
@@ -165,7 +169,7 @@ function Navbar({ selected }: {
                         </button>
                         :
                         <button onClick={() => {
-                            document.body.style.overflow = 'hidden'
+                            lock()
                             setSettings(true)
                         }} className="GitHubButton">
                             {/* <img alt="Google icon button" src={Google2} /> */}

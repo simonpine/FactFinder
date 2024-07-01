@@ -19,6 +19,7 @@
     "react-responsive-masonry": "^2.2.0",
     "react-router-dom": "^6.23.0",
     "react-scripts": "5.0.1",
+    "react-toastify": "^10.0.5",
     "react-use": "^17.5.0",
     "sass": "^1.75.0",
     "stopword": "^3.0.1",
