@@ -47,21 +47,15 @@ function Saved() {
         <NewBox unlock={unlock} setTheNew={setShowNew} newDetails={showNew}>
         </NewBox>
       }
-      {/* <Navbar selected={3} /> */}
       <main className="FullContainer">
         <div className="AllNewsCont">
-          {newsList.length > 0 ? <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 1000: 3 }}>
+          {newsList.length > 0 || loading ? <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 1000: 3 }}>
             <Masonry gutter={'15px'}>
               {!loading ?
 
                 newsList.map((notc: any) => {
-                  return notc.title !== '[Removed]' ? (
-                    <NewCard lock={lock} setReload={setReload} setTheNew={setShowNew} newDetails={notc} key={notc.article_id} />
-                    // <></>
-                  ) :
-                    (<></>)
+                  return <NewCard lock={lock} setReload={setReload} setTheNew={setShowNew} newDetails={notc} key={notc.article_id} />
                 })
-
                 :
                 forLoad.map((a: number) => {
                   return (
@@ -72,11 +66,11 @@ function Saved() {
             </Masonry>
           </ResponsiveMasonry> :
             <div className="ErrorContainer">
-              <img className="ilustration" alt="You haven't save news, this seccition is wmpty" src={representation} />
+              <img className="ilustration" alt="You haven't save news, this seccition is empty" src={representation} />
 
               <div>
                 <p className="NoNewsText">You haven't saved news</p>
-                <Link to={{ pathname: "/discover" }} className='GitHubButton'>Discover news <img className='MoveOnHover' alt='Arrow to indicate the page change' src={arrow} /></Link>
+                <Link to={{ pathname: "/discover" }} className='GitHubButton'>Discover news <img className='MoveOnHover1' alt='Arrow to indicate the page change' src={arrow} /></Link>
 
               </div>
 

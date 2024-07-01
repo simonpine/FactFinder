@@ -80,7 +80,7 @@ select {
 }
 
 .NewCardCont {
-  display: flex;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;  display: flex;
   flex-direction: column;
   gap: 10px;
   height: auto;
@@ -323,6 +323,8 @@ select {
 }
 
 .FullContNew {
+  // scrollbar-gutter: stable;
+
   animation: fadein 0.2s ease;
   // animation-name: fadein;
   // animation-duration: 0.3s;
@@ -354,6 +356,7 @@ select {
 }
 
 .ImgFullNew {
+  object-fit: cover;
   max-height: 50%;
   width: 100%;
   border-radius: 10px;
@@ -437,6 +440,7 @@ select {
   flex-direction: column;
   gap: 10px;
   align-items: center;
+
   & .ilustration {
     width: 300px;
   }
@@ -445,7 +449,8 @@ select {
     font-weight: 600;
     font-size: 1.5rem;
   }
-  & div{
+
+  & div {
     width: 250px;
     display: flex;
     gap: 10px;

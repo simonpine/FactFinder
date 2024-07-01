@@ -318,7 +318,16 @@
 
 .GitHubButton:hover .MoveOnHover {
     transition: 0.3s ease;
+    rotate: 360deg;
+}
+
+.GitHubButton:hover .MoveOnHover1 {
+    transition: 0.3s ease;
     transform: translate(3px);
+}
+
+.GitHubButton .MoveOnHover1 {
+    transition: 0.3s ease;
 }
 
 .GitHubButton .MoveOnHover {
