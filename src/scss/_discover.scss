@@ -80,7 +80,8 @@ select {
 }
 
 .NewCardCont {
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;  display: flex;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  display: flex;
   flex-direction: column;
   gap: 10px;
   height: auto;
@@ -98,7 +99,6 @@ select {
 
   & img {
     width: 60%;
-    // height: 100%;
     object-fit: cover;
     animation-name: colorLoop4;
     animation-duration: 15s;
@@ -266,8 +266,6 @@ select {
 }
 
 .TextLoad {
-  // background-color: rgb(190, 190, 190);
-  // color: rgb(190, 190, 190);
   animation: colorLoopLoad 3s infinite ease;
   border-radius: 20px;
 
@@ -323,11 +321,7 @@ select {
 }
 
 .FullContNew {
-  // scrollbar-gutter: stable;
-
   animation: fadein 0.2s ease;
-  // animation-name: fadein;
-  // animation-duration: 0.3s;
   top: 0px;
   z-index: 5;
   width: 960px;
@@ -436,9 +430,11 @@ select {
 }
 
 .ErrorContainer {
+  flex-wrap: wrap;
+  margin-top: 100px;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  justify-content: center;
+  gap: 30px;
   align-items: center;
 
   & .ilustration {
@@ -447,13 +443,13 @@ select {
 
   & p {
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
   & div {
-    width: 250px;
+    // width: 250px;
     display: flex;
-    gap: 10px;
+    gap: 20px;
     flex-direction: column;
   }
 

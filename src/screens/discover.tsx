@@ -12,9 +12,16 @@ import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import emptyImg from '../img/No data-pana.svg'
 import rotate from '../img/rotate-right.png'
+import { useDebounce } from "@uidotdev/usehooks";
+
 
 const forLoad: Array<number> = [1, 2, 3, 4, 5, 6]
-
+const ind = [
+    'category',
+    'prioritydomain',
+    'q',
+    'contry'
+]
 const Block = (props: InjectedViewportProps<HTMLDivElement>) => {
     const { forwardedRef } = props;
     return (
@@ -41,31 +48,49 @@ function Discover() {
     const [contry, setContry] = useState('')
 
     const [showNew, setShowNew] = useState({ content: '' })
+    const debouncedSearchTerm = useDebounce(q, 400);
+
     async function Submit(evt: any) {
         await evt.preventDefault();
-        await FetchData(contry, category, prioritydomain, q)
     }
-    async function FetchData(contChange: string, cateChange: string, prioChange: string, qChange: string): Promise<void> {
-        await setNewsList([]);
-        await setNumberArticles(0)
-        await setChargingData(true);
-        const { result, error } = await CallNewsHead(cateChange, contChange, qChange, prioChange, 1)
-        if (result.status !== 'error') {
-            await setPage(result.nextPage)
-            await setNumberArticles(result.totalResults)
-            await setNewsList(result.results);
-        }
-        if (error) {
-            toast.error(error, {
-                position: "top-left",
-                theme: "dark"
-            });
-        }
-        await setChargingData(false);
 
-    }
+    useEffect(() => {
+        const arr = [category, prioritydomain, debouncedSearchTerm, contry].map((item, index: number) => {
+            if (item === '') return ''
+            return `${ind[index]}=${item}`
+        }).filter((item) => item !== '')
+        window.history.replaceState({}, "", arr.length > 0 ? `${arr.some((item) => item.length > 0) ? '?' : ''}${arr.join('&')}` : window.location.pathname);
+    }, [category, prioritydomain, debouncedSearchTerm, contry])
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const Q: string = urlParams.get("q") || '';
+        const CATEGORY: string = urlParams.get("category") || '';
+        const COUNTRY: string = urlParams.get("contry") || '';
+        const PRIORITYDOMAIN: string = urlParams.get("prioritydomain") || '';
+
+        async function FetchData(): Promise<void> {
+            await setChargingData(true)
+            await setNewsList([])
+            const { result, error } = await CallNewsHead(CATEGORY, COUNTRY, Q, PRIORITYDOMAIN, 1)
+            if (result.status !== 'error') {
+                await setPage(result.nextPage)
+                const AllNews = await result.results
+                await setNumberArticles(result.totalResults)
+                await setNewsList(AllNews);
+            }
+            if (error) {
+                toast.error(error, {
+                    position: "top-left",
+                    theme: "dark"
+                });
+            }
+            await setChargingData(false)
+        }
+        FetchData()
+    }, [category, prioritydomain, debouncedSearchTerm, contry])
+
+
     async function AddPage(): Promise<void> {
-        // await console.log(numberArticles, newsList.length)
         await setLoading(true)
         const { result, error } = await CallNewsHead(category, contry, q, prioritydomain, page)
         await setPage(result.nextPage)
@@ -86,63 +111,37 @@ function Discover() {
         await setContry("")
         await setPrioritydomain("")
         await setPage(1)
-        await FetchData('', 'top', '', '')
     }
 
-    useEffect(() => {
-        document.body.style.overflow = 'auto'
-        async function FetchData(): Promise<void> {
-            await setChargingData(true)
-            await setNewsList([])
-            const { result, error } = await CallNewsHead('top', '', '', '', 1)
-            if (result.status !== 'error') {
-                await setPage(result.nextPage)
-                const AllNews = await result.results
-                await setNumberArticles(result.totalResults)
-                await setNewsList(AllNews);
-            }
-            if (error) {
-                toast.error(error, {
-                    position: "top-left",
-                    theme: "dark"
-                });
-            }
-            await setChargingData(false)
-        }
-        FetchData()
-    }, [])
+
     return (
         <>
             {showNew.content !== '' &&
                 <NewBox unlock={unlock} setTheNew={setShowNew} newDetails={showNew}>
                 </NewBox>
             }
-            {/* <Navbar selected={2} /> */}
             <main className="FullContainer">
                 <ToastContainer />
                 <form onSubmit={Submit} className="SearchCont">
                     <div className="PartOfFilters PartOfFiltersWrap">
-                        <select value={contry} onChange={async (e) => {
+                        <select id="CountrySelector" value={contry} onChange={async (e) => {
                             await setContry(e.target.value)
-                            await FetchData(e.target.value, category, prioritydomain, q)
                         }} >
                             <Countries />
                         </select>
-                        <select value={category} onChange={async (e) => {
+                        <select id="CategorySelector" value={category} onChange={async (e) => {
                             await setCategory(e.target.value)
-                            await FetchData(contry, e.target.value, prioritydomain, q)
                         }} >
                             <Categories />
                         </select>
-                        <select value={prioritydomain} onChange={async (e) => {
+                        <select id="PrioritySelector" value={prioritydomain} onChange={async (e) => {
                             await setPrioritydomain(e.target.value)
-                            await FetchData(contry, category, e.target.value, q)
                         }} >
                             <Priority />
                         </select>
                     </div>
                     <div className="PartOfFilters">
-                        <input value={q} className="SearchByQ" type='text' placeholder='Search by Keywords...' onChange={e => setQ(e.target.value)} />
+                        <input id="QSelector" value={q} className="SearchByQ" type='text' placeholder='Search by Keywords...' onChange={e => setQ(e.target.value)} />
                         <button className="SearchButton" type="submit">
                             <img alt="Search button" src={SearchImg} />
                         </button>

@@ -9,7 +9,6 @@ import repre from './img/asd.svg'
 function App() {
   return (
     <>
-      {/* <Navbar selected={1} /> */}
       <main className='FullContainer'>
         <div className='MainBanner'>
 

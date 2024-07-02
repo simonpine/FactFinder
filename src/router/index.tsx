@@ -5,15 +5,16 @@ import { Route, Routes } from "react-router-dom"
 import { auth } from '../fireBaseCom'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Navigate } from "react-router-dom";
+import Error404 from '../screens/404.tsx';
 
 export const RoutesForTheApp = () => {
   const [user] = useAuthState(auth)
   return (
     <Routes>
-      {/* <Route path="/" element={<Home/>}> */}
       <Route path="/" element={<App />} />
-      <Route path="/discover" element={<Discover />} />
-      <Route path="/saved" element={!!user?<Saved />:<Navigate to='/' />} />
+      <Route path={"*"} element={<Error404/>}/>
+      <Route path="/discover/*" element={<Discover />} />
+      <Route path="/saved" element={!!user ? <Saved /> : <Navigate to='/' />} />
     </Routes>
   )
 }

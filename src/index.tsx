@@ -1,9 +1,6 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom"
-// import {Form, RouterProvider} from "react-router-dom"
 import Navbar from './components/navbar';
 import { RoutesForTheApp } from './router';
 import { initializeApp } from "firebase/app";
@@ -26,12 +23,10 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
     <BrowserRouter>
       <Navbar />
       <RoutesForTheApp/>
     </BrowserRouter>
-  </React.StrictMode>
 );
 
 reportWebVitals();
