@@ -82,8 +82,6 @@ function Discover() {
         await evt.preventDefault();
         fetchData()
     }
-    useEffect(fetchData, [category, prioritydomain, debouncedSearchTerm, contry])
-
     useEffect(() => {
         const arr = [category, prioritydomain, debouncedSearchTerm, contry].map((item, index: number) => {
             if (item === '') return ''
@@ -91,6 +89,8 @@ function Discover() {
         }).filter((item) => item !== '')
         window.history.replaceState({}, "", arr.length > 0 ? `${arr.some((item) => item.length > 0) ? '?' : ''}${arr.join('&')}` : window.location.pathname);
     }, [category, prioritydomain, debouncedSearchTerm, contry])
+
+    useEffect(fetchData, [category, prioritydomain, debouncedSearchTerm, contry])
 
     async function AddPage(): Promise<void> {
         await setLoading(true)
