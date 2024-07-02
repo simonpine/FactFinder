@@ -37,22 +37,52 @@ function Discover() {
     const { lock, unlock } = useScrollLock({
         autoLock: false,
     })
+    const urlParams = new URLSearchParams(window.location.search);
     const [page, setPage] = useState(1)
     const [numberArticles, setNumberArticles] = useState(0)
     const [newsList, setNewsList]: any = useState([])
     const [loading, setLoading] = useState(false)
     const [chargingData, setChargingData] = useState(false)
-    const [category, setCategory] = useState('')
-    const [prioritydomain, setPrioritydomain] = useState('')
-    const [q, setQ] = useState('')
-    const [contry, setContry] = useState('')
+    const [category, setCategory] = useState( urlParams.get("category") || '')
+    const [prioritydomain, setPrioritydomain] = useState(urlParams.get("prioritydomain") || '')
+    const [q, setQ] = useState(urlParams.get("q") || '')
+    const [contry, setContry] = useState(urlParams.get("contry") || '')
 
     const [showNew, setShowNew] = useState({ content: '' })
     const debouncedSearchTerm = useDebounce(q, 400);
-
+    function fetchData(){
+            const urlParams = new URLSearchParams(window.location.search);
+            const Q: string = urlParams.get("q") || '';
+            const CATEGORY: string = urlParams.get("category") || '';
+            const COUNTRY: string = urlParams.get("contry") || '';
+            const PRIORITYDOMAIN: string = urlParams.get("prioritydomain") || '';
+    
+            async function FetchData(): Promise<void> {
+                await setChargingData(true)
+                await setNewsList([])
+                const { result, error } = await CallNewsHead(CATEGORY, COUNTRY, Q, PRIORITYDOMAIN, 1)
+                if (result.status !== 'error') {
+                    await setPage(result.nextPage)
+                    const AllNews = await result.results
+                    await setNumberArticles(result.totalResults)
+                    await setNewsList(AllNews);
+                }
+                if (error) {
+                    toast.error(error, {
+                        position: "top-left",
+                        theme: "dark"
+                    });
+                }
+                await setChargingData(false)
+            }
+            FetchData()
+        
+    }
     async function Submit(evt: any) {
         await evt.preventDefault();
+        fetchData()
     }
+    useEffect(fetchData, [category, prioritydomain, debouncedSearchTerm, contry])
 
     useEffect(() => {
         const arr = [category, prioritydomain, debouncedSearchTerm, contry].map((item, index: number) => {
@@ -61,34 +91,6 @@ function Discover() {
         }).filter((item) => item !== '')
         window.history.replaceState({}, "", arr.length > 0 ? `${arr.some((item) => item.length > 0) ? '?' : ''}${arr.join('&')}` : window.location.pathname);
     }, [category, prioritydomain, debouncedSearchTerm, contry])
-    useEffect(() => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const Q: string = urlParams.get("q") || '';
-        const CATEGORY: string = urlParams.get("category") || '';
-        const COUNTRY: string = urlParams.get("contry") || '';
-        const PRIORITYDOMAIN: string = urlParams.get("prioritydomain") || '';
-
-        async function FetchData(): Promise<void> {
-            await setChargingData(true)
-            await setNewsList([])
-            const { result, error } = await CallNewsHead(CATEGORY, COUNTRY, Q, PRIORITYDOMAIN, 1)
-            if (result.status !== 'error') {
-                await setPage(result.nextPage)
-                const AllNews = await result.results
-                await setNumberArticles(result.totalResults)
-                await setNewsList(AllNews);
-            }
-            if (error) {
-                toast.error(error, {
-                    position: "top-left",
-                    theme: "dark"
-                });
-            }
-            await setChargingData(false)
-        }
-        FetchData()
-    }, [category, prioritydomain, debouncedSearchTerm, contry])
-
 
     async function AddPage(): Promise<void> {
         await setLoading(true)
@@ -173,7 +175,7 @@ function Discover() {
                             </div>
                         </div>
                     }
-                    {newsList.length < numberArticles &&
+                    {(newsList.length < numberArticles && !chargingData) ?
                         <div>
                             <ViewportBlock onEnterViewport={AddPage} />
                             <button disabled={loading} onClick={AddPage} className="GitHubButton">Show more
@@ -183,6 +185,8 @@ function Discover() {
 
                             </button>
                         </div >
+                        :
+                        <></>
 
                     }
                 </section>

@@ -18,7 +18,7 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
       return snap.data().All
     }
   })
-  let response: any = await fetch(`https://newsdata.io/api/1/news?apikey=${ListKeys1[0]}&size=5&language=en${category !== '' ? `&category=${category}` : ''}${q !== '' ? `&q=${q}` : ''}${contry !== '' ? `&country=${contry}` : ''}${page !== 1 ? `&page=${page}` : ''}${prioritydomain !== '' ? `&prioritydomain=${prioritydomain}` : ''}`)
+  let response: any = await fetch(`https://newsdata.io/api/1/news?apikey=${ListKeys1[0]}&size=9&language=en${category !== '' ? `&category=${category}` : ''}${q !== '' ? `&q=${q}` : ''}${contry !== '' ? `&country=${contry}` : ''}${page !== 1 ? `&page=${page}` : ''}${prioritydomain !== '' ? `&prioritydomain=${prioritydomain}` : ''}`)
   response = await response.json()
   if (response.status === 'error') {
     await ChangeKey1(itemsColection2, ListKeys1)
