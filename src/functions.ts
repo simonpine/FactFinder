@@ -14,7 +14,7 @@ async function ChangeKey1(TheDoc: any, array: Array<string | undefined>) {
 
 export async function CallNewsHead(category: string, contry: string, q: string, prioritydomain: string, page: number): Promise<any> {
 
-  let ERROR = undefined
+  let ERROR: undefined | string = undefined
 
   let ListKeys1 = await getDoc(itemsColection2).then((snap) => {
     if (snap.exists()) {
@@ -43,18 +43,20 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
     response.results.map(async (not: any) => {
 
 
-      const AfterJson = await fetch(`https://api.worldnewsapi.com/extract-news?analyze=true&url=${not.link}&api-key=${ListKeys2[0]}`).then(res => res.json()).catch(() => { ERROR = 'Cannot acces to the content API'; return undefined })
-
-      if (ListKeys2[0] === "TEST" || AfterJson === undefined) {
-        if (not.description !== '' && not.description !== 'ONLY AVAILABLE IN PAID PLANS') {
+      const AfterJson = await fetch(`https://api.worldnewsapi.com/extract-news?analyze=true&url=${not.link}&api-key=${ListKeys2[0]}`).then(res => res.json()).catch(() => { 
+        ERROR = 'Cannot acces to the content API'; 
+        return undefined 
+      })
+      if (AfterJson.status === 'failure' || AfterJson === undefined) {
+        if (not.description !== '' && not.description !== 'ONLY AVAILABLE IN PAID PLANS' && typeof not.title === 'string' && typeof not.description === 'string' ) {
           const responseIA = await fetch('https://fact-finder-api.onrender.com/predict', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              title: (removeStopwords(not.title?.toLowerCase().split(' '))).join(' '),
-              text: (removeStopwords(not.description?.toLowerCase().split(' '))).join(' ')
+              title: (removeStopwords(not.title.toLowerCase().split(' '))).join(' '),
+              text: (removeStopwords(not.description.toLowerCase().split(' '))).join(' ')
             })
           }).then(res => res.json()).catch(() => {
             ERROR = 'Cannot acces to the IA model'
@@ -70,52 +72,50 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
           }
         }
         else {
-
-          ERROR = 'Cannot get the news content'
+          ERROR = 'Cannot get the news full content'
           not.polarization = NaN
           not.falsity = NaN
         }
-
         not.content = not.description
         return await not
       }
-
-      if (AfterJson.status === "failure" && AfterJson.code === 402) {
-        await ChangeKey1(itemsColection, ListKeys2)
-        not.content = await not.description
-        not.polarization = await Math.round(Math.random() * 100) / 100
-        not.falsity = await Math.round(Math.random() * 100) / 100
-      }
-      else {
-        if (AfterJson.text.includes('ERROR')) {
-          not.content = await not.description
-        }
-        else {
-          not.content = await AfterJson.text
-        }
-        const responseIA = await fetch('https://fact-finder-api.onrender.com/predict', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            title: (removeStopwords(not.title?.toLowerCase().split(' '))).join(' '),
-            text: (removeStopwords(not.description?.toLowerCase().split(' '))).join(' ')
-          })
-        }).then(res => res.json()).catch(() => {
-          ERROR = 'Cannot acces to the IA model'
-          return undefined
-        })
-        if (responseIA) {
-          not.polarization = await  1 - responseIA.Polarity.neu
-          not.falsity = await responseIA.FakePosibility
-        }
-        else{
-          not.polarization = NaN
-          not.falsity = NaN
-        }
-      }
-      return await not
+      return not
+      // if (AfterJson.status === "failure" && AfterJson.code === 402) {
+      //   await ChangeKey1(itemsColection, ListKeys2)
+      //   not.content = await not.description
+      //   not.polarization = await Math.round(Math.random() * 100) / 100
+      //   not.falsity = await Math.round(Math.random() * 100) / 100
+      // }
+      // else {
+      //   if (AfterJson.text.includes('ERROR')) {
+      //     not.content = await not.description
+      //   }
+      //   else {
+      //     not.content = await AfterJson.text
+      //   }
+      //   const responseIA = await fetch('https://fact-finder-api.onrender.com/predict', {
+      //     method: 'POST',
+      //     headers: {
+      //       'Content-Type': 'application/json'
+      //     },
+      //     body: JSON.stringify({
+      //       title: (removeStopwords(not.title?.toLowerCase().split(' '))).join(' '),
+      //       text: (removeStopwords(not.description?.toLowerCase().split(' '))).join(' ')
+      //     })
+      //   }).then(res => res.json()).catch(() => {
+      //     ERROR = 'Cannot acces to the IA model'
+      //     return undefined
+      //   })
+      //   if (responseIA) {
+      //     not.polarization = await  1 - responseIA.Polarity.neu
+      //     not.falsity = await responseIA.FakePosibility
+      //   }
+      //   else{
+      //     not.polarization = NaN
+      //     not.falsity = NaN
+      //   }
+      // }
+      // return await not
     })
   )
   return { result: response, error: ERROR }
