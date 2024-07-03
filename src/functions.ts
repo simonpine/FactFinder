@@ -48,6 +48,8 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
         return undefined
       })
       if (AfterJson.status === 'failure' || AfterJson === undefined) {
+        ChangeKey1(itemsColection, ListKeys2)
+        ERROR = 'Cannot acces to the content API';
         if (not.description !== '' && not.description !== 'ONLY AVAILABLE IN PAID PLANS' && typeof not.title === 'string' && typeof not.description === 'string') {
           const responseIA = await fetch('https://fact-finder-api.onrender.com/predict', {
             method: 'POST',
