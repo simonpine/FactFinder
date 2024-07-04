@@ -89,23 +89,29 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
         else {
           not.content = await AfterJson.text
         }
-        const responseIA = await fetch('https://fact-finder-api.onrender.com/predict', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            title: (removeStopwords(not.title?.toLowerCase().split(' '))).join(' '),
-            text: (removeStopwords(not.description?.toLowerCase().split(' '))).join(' ')
+        if (not.description !== '' && not.description !== 'ONLY AVAILABLE IN PAID PLANS' && typeof not.title === 'string' && typeof not.description === 'string') {
+          const responseIA = await fetch('https://fact-finder-api.onrender.com/predict', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              title: (removeStopwords(not.title?.toLowerCase().split(' '))).join(' '),
+              text: (removeStopwords(not.description?.toLowerCase().split(' '))).join(' ')
+            })
+          }).then(res => res.json()).catch(() => {
+            ERROR = 'Cannot acces to the IA model'
+            return undefined
           })
-        }).then(res => res.json()).catch(() => {
-          ERROR = 'Cannot acces to the IA model'
-          return undefined
-        })
 
-        if (responseIA) {
-          not.polarization = await 1 - responseIA.Polarity.neu
-          not.falsity = await responseIA.FakePosibility
+          if (responseIA) {
+            not.polarization = await 1 - responseIA.Polarity.neu
+            not.falsity = await responseIA.FakePosibility
+          }
+          else {
+            not.polarization = NaN
+            not.falsity = NaN
+          }
         }
         else {
           not.polarization = NaN

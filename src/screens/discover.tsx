@@ -170,7 +170,7 @@ function Discover() {
                         <div className="ErrorContainer">
                             <img className="ilustration" alt="No news satisfies the filters" src={emptyImg} />
                             <div>
-                                <p className="NoNewsText">No news satisfies the filters</p>
+                                <p className="NoNewsText">{'No news satisfies the filters'}</p>
                                 <button onClick={clearFilters} className='GitHubButton'>Clear the filters<img className='MoveOnHover' alt='On press reload the filtres to show the news' src={rotate} /></button>
                             </div>
                         </div>
@@ -182,7 +182,6 @@ function Discover() {
                                 {loading &&
                                     <span className="mini-loading"></span>
                                 }
-
                             </button>
                         </div >
                         :
