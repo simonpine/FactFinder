@@ -117,7 +117,7 @@ export async function CallNewsHead(category: string, contry: string, q: string, 
           not.polarization = NaN
           not.falsity = NaN
         }
-
+        await setTimeout(()=> {}, 1000) 
         return await not
       }
     })
